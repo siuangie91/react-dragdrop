@@ -15,14 +15,28 @@ class ProjectsContainer extends Component {
 
 	handleDragStart = e => {
 		console.log('dragging!', e.target.getAttribute('name'));
-		e.dataTransfer.setData('projectName', e.target.getAttribute('name'));
+
+		const projectToMove = e.target.getAttribute('name');
+		e.dataTransfer.setData('projectName', projectToMove);
+
+		this.setState(prevState => ({
+			projects: prevState.projects.filter(item => item.name !== projectToMove)
+		}), () => {
+			console.log('state ondragstart', this.state)
+		});
 	}
 
 	handleDrop = e => {
 		e.preventDefault();
+		console.log('dropping!', e.dataTransfer.getData('projectName'));
 		const projectToDrop = e.dataTransfer.getData('projectName');
-		console.log('dropping!', projectToDrop);
 		// e.target.appendChild(document.querySelector(`[name="${projectToDrop}"]`));
+
+		this.setState(prevState => ({
+			projects: [{name: projectToDrop}, ...prevState.projects]
+		}), () => {
+			console.log('state ondrop', this.state);
+		});
 	}
 
   render() {
@@ -31,7 +45,7 @@ class ProjectsContainer extends Component {
       	onDrop={e => this.handleDrop(e)}
       	onDragOver={e => e.preventDefault()}>
       	{
-      		projectsData.map((project,i) => (
+      		this.state.projects.map((project,i) => (
       			<ProjectNode key={i} 
       				name={project.name}
       				dragStartHandler={e => this.handleDragStart(e)}/>
