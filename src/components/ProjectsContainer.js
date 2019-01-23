@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 
+import ProjectNode from './ProjectNode';
+
 import projectsData from '../data/projects.json';
 
-class PrioritiesContainer extends Component {
+class ProjectsContainer extends Component {
   render() {
     return (
-      <section id="priorities-container">
+      <section id="projects-container">
       	{
       		projectsData.map((project,i) => (
-      			<p key={i}>{project.name}</p>
+      			<ProjectNode key={i} 
+      				name={project.name}/>
 	      	))	
       	}
       </section>
@@ -16,4 +19,4 @@ class PrioritiesContainer extends Component {
   }
 }
 
-export default PrioritiesContainer;
+export default ProjectsContainer;

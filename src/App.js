@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import PrioritiesContainer from './components/PrioritiesContainer';
+import ProjectsContainer from './components/ProjectsContainer';
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
         <header>
           <h1>Priorities Drag-Drop</h1>
         </header>
-        <PrioritiesContainer></PrioritiesContainer>
+        <ProjectsContainer></ProjectsContainer>
       </div>
     );
   }
