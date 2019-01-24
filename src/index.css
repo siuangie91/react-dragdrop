@@ -13,10 +13,15 @@ html, body {
 
 #root {
 	width: 90%;
+	max-width: 700px;
 	height: 100%;
 	margin: 0 auto;
 	padding: 10px 20px;
 	background: #fff;
+}
+
+.App {
+	height: 100%;
 }
 
 header {
@@ -24,9 +29,12 @@ header {
 }
 
 #projects-container {
+	height: calc(100% - 80px);
 	margin-top: 40px;
-	padding: 20px; 
-	background: #ccc;
+	padding: 10px; 
+	border-radius: 4px;
+	background: #efefef;
+	box-shadow: inset 2px 2px 4px #ccc;
 }
 
 .project-node {
@@ -34,6 +42,7 @@ header {
 	padding: 10px;
 	border-radius: 4px;
 	background: #3a609e;
+	box-shadow: 2px 2px 4px #666;
 	color: #fff;
 	cursor: pointer;
 }
