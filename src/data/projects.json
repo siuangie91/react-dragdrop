@@ -1,17 +1,17 @@
 [
 	{
-		"name": "Super High Priority Project"
+		"name": "Clean up house"
 	},
 	{
-		"name": "High Priority Project"
+		"name": "Make dinner"
 	},
 	{
-		"name": "Medium Priority Project"
+		"name": "Walk the dog"
 	},
 	{
-		"name": "Low Priority Project"
+		"name": "Go to the bank"
 	},
 	{
-		"name": "Super Low Priority Project"
+		"name": "Do laundry"
 	}
 ]
