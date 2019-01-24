@@ -16,18 +16,18 @@ class ProjectsContainer extends Component {
 	handleDragStart = (e, idx) => {
 		console.log('idx', idx);
 		this.projectToMove = this.state.projects[idx];
-		console.log('dragging!', this.projectToMove);
+		// console.log('dragging!', this.projectToMove);
 
 		e.dataTransfer.setData('text/html', e.target);
 	}
 
 	handleDragOver = idx => {
 		const draggedOverItem = this.state.projects[idx];
-		console.log('draggedOverItem', draggedOverItem);
+		// console.log('draggedOverItem', draggedOverItem);
 
     // if the item is dragged over itself, ignore
     if (this.projectToMove === draggedOverItem) {
-    	console.log('dragging over the same item!');
+    	console.log('Ignoring! Dragging over the same item!');
       return;
     }
 
