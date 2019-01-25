@@ -5,16 +5,9 @@ import ProjectInput from './components/ProjectInput';
 
 import projectsData from './data/projects.json';
 
+const ProjectContext = React.createContext('projectList');
+
 class App extends Component {
-  /*constructor() {
-    super;
-
-    this.state = {
-      projects: projectsData.map(project => project.name),
-      ignoringDragOver: false
-    };
-  }*/
-
   render() {
     return (
       <div className="App">

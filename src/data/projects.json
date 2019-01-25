@@ -13,5 +13,14 @@
 	},
 	{
 		"name": "Do laundry"
+	},
+	{
+		"name": "Sweep the floor"
+	},
+	{
+		"name": "Scrub the toilet"
+	},
+	{
+		"name": "Do homework"
 	}
 ]
