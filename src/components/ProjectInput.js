@@ -13,7 +13,8 @@ class ProjectInput extends Component {
 
   clickHandler = contextValue => {
     console.log('Added task:', this.state.inputText);
-    contextValue.projectsData = [...contextValue.projectsData, {name: this.state.inputText}];
+
+    contextValue.addProject({name: this.state.inputText});
     console.log('Data after adding:', contextValue.projectsData);
 
     // clear input field
