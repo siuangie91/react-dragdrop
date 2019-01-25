@@ -14,12 +14,18 @@ class ProjectContextProvider extends Component {
     }
   }
 
-  addProject = (newProject) => {
+  addProject = newProject => {
     this.setState(prevState => (
       {
         projectsData: [...prevState.projectsData, newProject]
       }
     ));
+  }
+
+  rearrangeProjects = newProjectData => {
+  	this.setState({
+  		projectsData: newProjectData
+  	});
   }
 
   render() {
@@ -28,7 +34,8 @@ class ProjectContextProvider extends Component {
       <ProjectContext.Provider name="ProjectContextProvider"
         value={{
           projectsData: this.state.projectsData,
-          addProject: this.addProject
+          addProject: this.addProject,
+          rearrangeProjects: this.rearrangeProjects
         }}>
         {this.props.children}
       </ProjectContext.Provider>

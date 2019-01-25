@@ -39,13 +39,11 @@ class ProjectsContainer extends Component {
 
     // filter out the currently dragged item
     let projects = contextValue.projectsData.filter(project => project !== this.projectToMove);
-
     // add the dragged item after the dragged over item
     projects.splice(idx, 0, this.projectToMove);
 
     // set the projectsData in the contextValue to the new list order
-    contextValue.projectsData = projects;
-    // console.log('new projects list:', contextValue.projectsData);
+    contextValue.rearrangeProjects(projects);
 	}
 
 	handleDragEnd = () => {
