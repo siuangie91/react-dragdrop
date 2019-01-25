@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const ProjectsNode = props => {
   const {name, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles} = props; 

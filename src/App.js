@@ -5,7 +5,8 @@ import ProjectInput from './components/ProjectInput';
 
 import projectsData from './data/projects.json';
 
-const ProjectContext = React.createContext('projectList');
+const ProjectContext = React.createContext(projectsData);
+export const ProjectContextConsumer = ProjectContext.Consumer;
 
 class App extends Component {
   render() {
@@ -14,8 +15,15 @@ class App extends Component {
         <header>
           <h1>To-Do Drag-Drop</h1>
         </header>
-        <ProjectInput />
-        <ProjectsContainer />
+
+        <ProjectContext.Provider name="ProjectContextProvider" 
+          value={{
+            projectsData,
+          }}>
+          <ProjectInput />
+          <ProjectsContainer />  
+        </ProjectContext.Provider>
+        
       </div>
     );
   }
