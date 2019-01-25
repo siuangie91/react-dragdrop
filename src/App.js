@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <header>
-          <h1>Priorities Drag-Drop</h1>
+          <h1>To-Do Drag-Drop</h1>
         </header>
         <ProjectsContainer></ProjectsContainer>
       </div>

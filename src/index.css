@@ -7,7 +7,6 @@
 
 html, body {
 	height: 100vh;
-	background: #ccc;
 	font-family: sans-serif;
 }
 
@@ -17,7 +16,6 @@ html, body {
 	height: 100%;
 	margin: 0 auto;
 	padding: 10px 20px;
-	background: #fff;
 }
 
 .App {
@@ -25,30 +23,43 @@ html, body {
 }
 
 header {
+	margin-top: 20px;
 	text-align: center;
 }
 
 #projects-container {
-	height: calc(100% - 80px);
-	margin-top: 40px;
+	/*height: calc(100% - 80px);*/
+	margin-top: 20px;
 	padding: 10px; 
 	border-radius: 4px;
 	background: #efefef;
 	box-shadow: inset 2px 2px 4px #ccc;
 }
 
+#projects-container ol {
+	margin-left: -10px;
+}
+
+#projects-container ol li {
+	padding-left: 10px;
+}
+
 .project-node {
+	position: relative;
 	margin-bottom: 14px;
 	padding: 10px;
 	border-radius: 4px;
-	background: #3a609e;
 	box-shadow: 2px 2px 4px #666;
-	color: #fff;
 	cursor: pointer;
+	transition: all 400ms;
 }
 
 .project-node:hover {
-	color: #000;
-	background: #6194e8;
+	box-shadow: 4px 4px 4px #666;
+}
+
+.project-node i.fas {
+	position: absolute;
+	right: 10px;
 }
 

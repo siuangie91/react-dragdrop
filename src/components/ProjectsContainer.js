@@ -9,15 +9,16 @@ class ProjectsContainer extends Component {
 		super();
 
 		this.state = {
-			projects: projectsData.map(project => project.name)
+			projects: projectsData.map(project => project.name),
+			ignoringDragOver: false
 		};
 	}
 
 	handleDragStart = (e, idx) => {
-		console.log('idx', idx);
 		this.projectToMove = this.state.projects[idx];
-		// console.log('dragging!', this.projectToMove);
+		console.log('dragging!', this.projectToMove);
 
+		e.dataTransfer.effectAllowed = "move";
 		e.dataTransfer.setData('text/html', e.target);
 	}
 
@@ -27,8 +28,11 @@ class ProjectsContainer extends Component {
 
     // if the item is dragged over itself, ignore
     if (this.projectToMove === draggedOverItem) {
-    	console.log('Ignoring! Dragging over the same item!');
-      return;
+    	if(!this.state.ignoringDragOver) { // only if !ignoringDragOver to prevent firing too many events
+    		console.log('Ignoring! Dragging over the same item!');
+    		this.setState({ignoringDragOver: true});
+      	return;	
+    	}   	
     }
 
     // filter out the currently dragged item
@@ -42,20 +46,42 @@ class ProjectsContainer extends Component {
 
 	handleDragEnd = () => {
     this.projectToMove = null;
+    this.setState({ignoringDragOver: false}); // reset
+    // console.log('dragEnd');
+  }
+
+  setNodeColor = idx => {
+  	const numNodes = this.state.projects.length;
+
+  	const percent = 1 / numNodes;
+  	const degreeTransparency = percent * idx;
+  	// set max transparency to 10%
+  	const maxTransparency = 0.1;
+  	const alpha = Math.max(maxTransparency, 1 - degreeTransparency);
+
+  	return {
+  		backgroundColor: `rgba(58,96,158,${alpha})`,
+  		color: `${(alpha <= 0.3) ? '#000' : '#fff'}`
+  	};
   }
 
   render() {
     return (
       <section id="projects-container">
-      	{
-      		this.state.projects.map((project,i) => (
-      			<ProjectNode key={i} 
-      				name={project}
-      				dragStartHandler={e => this.handleDragStart(e, i)}
-      				dragOverHandler={() => this.handleDragOver(i)}
-      				dragEndHandler={this.handleDragEnd} />
-	      	))	
-      	}
+      	<ol>
+      		{
+	      		this.state.projects.map((project,i) => (
+	      			<li key={i}>
+	      				<ProjectNode
+		      				name={project}
+		      				dragStartHandler={e => this.handleDragStart(e, i)}
+		      				dragOverHandler={() => this.handleDragOver(i)}
+		      				dragEndHandler={this.handleDragEnd}
+		      				nodeStyles={this.setNodeColor(i)} />
+	      			</li>
+		      	))	
+	      	}
+      	</ol>
       </section>
     );
   }
