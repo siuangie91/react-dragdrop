@@ -13,6 +13,6 @@ _*Note: `draggable` is not supported on mobile browsers._
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
 2. You can add tasks at a desired insertion point (index number). By default, it will be inserted at the end of the list.
-		- If the task name is empty, you will get an error message.
+    - If the task name is empty, you will get an error message.
 3. You can delete tasks.
-		- If the task list is empty, you will get a message.
+    - If the task list is empty, you will get a message.
