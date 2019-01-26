@@ -65,6 +65,12 @@ header {
 	box-shadow: inset 2px 2px 4px #ccc;
 }
 
+#projects-container .no-tasks {
+	text-align: center;
+	font-weight: bold;
+	color: #ff0000;
+}
+
 #projects-container ol {
 	margin-left: -10px;
 }

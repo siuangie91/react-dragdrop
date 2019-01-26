@@ -81,6 +81,12 @@ class ProjectsContainer extends Component {
 
             return (
             	<section id="projects-container">
+            		{
+            			(value.projectsData.length === 0) ? 
+            				<p className="no-tasks">You have no tasks!</p>
+            				:
+            				""
+            		}
 				      	<ol>
 				      		{
 					      		value.projectsData.map((project,i) => (
