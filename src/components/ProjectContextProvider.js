@@ -44,7 +44,7 @@ class ProjectContextProvider extends Component {
   }
 
   render() {
-    // console.log('ProjectContextProvider state', this.state);
+    // logMsg('ProjectContextProvider state', this.state);
     return (
       <ProjectContext.Provider name="ProjectContextProvider"
         value={{
