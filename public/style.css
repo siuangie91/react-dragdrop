@@ -65,8 +65,7 @@ header {
 	box-shadow: inset 2px 2px 4px #ccc;
 }
 
-#projects-container .no-tasks {
-	text-align: center;
+.error {
 	font-weight: bold;
 	color: #ff0000;
 }

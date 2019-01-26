@@ -83,7 +83,7 @@ class ProjectsContainer extends Component {
             	<section id="projects-container">
             		{
             			(value.projectsData.length === 0) ? 
-            				<p className="no-tasks">You have no tasks!</p>
+            				<p className="error">You have no tasks!</p>
             				:
             				""
             		}

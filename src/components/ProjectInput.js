@@ -10,17 +10,23 @@ class ProjectInput extends Component {
   constructor() {
     super();
 
+    this.inputRef = React.createRef();
+
     this.state = {
-      inputText: ""
+      inputText: "",
+      error: false
     };
   }
 
   clickHandler = () => {
     const {inputText} = this.state;
+    // put focus back into input field
+    this.inputRef.current.focus();
 
     // check if task is empty string
     if(!inputText.trim()) {
       logMsg('Cannot add an empty task');
+      this.setState({error: true});
       return;
     }
 
@@ -29,11 +35,14 @@ class ProjectInput extends Component {
     this.context.addProject({name: inputText});
 
     // clear input field
-    this.setState({inputText: ""})
+    this.setState({inputText: ""});
   }
 
   changeHandler = e => {
-    this.setState({inputText: e.target.value});
+    this.setState({
+      inputText: e.target.value,
+      error: false
+    });
   }
 
   render() {
@@ -47,8 +56,15 @@ class ProjectInput extends Component {
               <section id="project-input">
                 <label>Task Name:</label>
                 <input type="text" placeholder="XYZ Task" 
+                  ref={this.inputRef}
                   value={this.state.inputText}
                   onChange={e => this.changeHandler(e)}/>
+                {
+                  (this.state.error) ? 
+                    <p className="error">Cannot add an empty task</p>
+                    : 
+                    ""
+                }
                 <button onClick={this.clickHandler}>Add Task</button> 
               </section>          
             );
