@@ -68,7 +68,7 @@ class ProjectsContainer extends Component {
 
   	return {
   		backgroundColor: `rgba(58,96,158,${alpha})`,
-  		color: `#${(alpha <= 0.3) ? '000' : 'fff'}`
+  		color: `#${(alpha <= 0.35) ? '000' : 'fff'}`
   	};
   }
 

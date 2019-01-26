@@ -26,6 +26,12 @@ header {
 	text-align: center;
 }
 
+.error {
+	padding: 10px 0;
+	font-weight: bold;
+	color: #ff0000;
+}
+
 #project-input {
 	margin-top: 20px;
 }
@@ -53,8 +59,36 @@ header {
   padding: 8px;
   border-radius: 4px;
   font-size: 14px;
-  background: cyan;
+  background: #6ca3fc;
   cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+	#project-input {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+
+	#project-input label {
+		width: 100px;
+	}
+
+	#project-input input {
+		margin: 0;
+		width: 350px;
+	}	
+
+	#project-input button {
+		width: 150px;
+		margin: 0;
+	}
+
+	#project-input .error {
+		width: 100%;
+		flex-shrink: 0;	
+	}
 }
 
 #projects-container {
@@ -63,11 +97,6 @@ header {
 	border-radius: 4px;
 	background: #efefef;
 	box-shadow: inset 2px 2px 4px #ccc;
-}
-
-.error {
-	font-weight: bold;
-	color: #ff0000;
 }
 
 #projects-container ol {

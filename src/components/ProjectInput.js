@@ -54,18 +54,18 @@ class ProjectInput extends Component {
 
             return (
               <section id="project-input">
+                {
+                  (this.state.error) ? 
+                    <p className="error">Cannot add an empty task!</p>
+                    : 
+                    ""
+                }
                 <label>Task Name:</label>
                 <input type="text" placeholder="XYZ Task" 
                   ref={this.inputRef}
                   value={this.state.inputText}
                   onChange={e => this.changeHandler(e)}/>
-                {
-                  (this.state.error) ? 
-                    <p className="error">Cannot add an empty task</p>
-                    : 
-                    ""
-                }
-                <button onClick={this.clickHandler}>Add Task</button> 
+                <button onClick={this.clickHandler}>+ Add Task</button> 
               </section>          
             );
           }
