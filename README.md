@@ -2,6 +2,8 @@
 
 A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks.
 
+_*Note: `draggable` is not supported on mobile browsers._
+
 ### Implementation
 1. Feature is implemented using the HTML5 `draggable` property.
 2. Dummy data are stored in `src/data/projects.json`.
