@@ -46,7 +46,7 @@ class ProjectInput extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject({name: inputValue.text}, inputValue.idx/*(inputValue.idx) ? inputValue.idx : this.context.projectsData.length*/);
+    this.context.addProject({name: inputValue.text}, inputValue.idx);
 
     // clear input field
     this.setState({
