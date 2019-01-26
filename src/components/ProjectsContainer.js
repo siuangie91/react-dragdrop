@@ -74,7 +74,7 @@ class ProjectsContainer extends Component {
 
   render() {
   	return (
-  		<ProjectContext.Consumer name="ProjectContextConsumer">
+  		<ProjectContext.Consumer name="ProjectContextConsumer.ProjectsContainer">
   			{
   				value => {
   					// logMsg('ProjectsContainer values', value);

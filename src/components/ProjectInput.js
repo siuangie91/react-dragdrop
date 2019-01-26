@@ -47,7 +47,7 @@ class ProjectInput extends Component {
 
   render() {
     return (
-      <ProjectContext.Consumer name="ProjectContextConsumer">
+      <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">
         {
           value => {
             // logMsg('ProjectInput values', value);
