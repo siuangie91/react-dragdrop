@@ -15,10 +15,13 @@ class ProjectContextProvider extends Component {
     }
   }
 
-  addProject = newProject => {
+  addProject = (newProject, idx) => {
+  	let projectList = this.state.projectsData
+  	projectList.splice(idx, 0, newProject);
+
     this.setState(prevState => (
       {
-        projectsData: [...prevState.projectsData, newProject]
+        projectsData: projectList
       }
     ), () => {
     	logMsg('Data after adding:', this.state.projectsData);
