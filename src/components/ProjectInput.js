@@ -15,10 +15,21 @@ class ProjectInput extends Component {
     this.state = {
       inputValue: {
         text: "",
-        idx: 0
+        idx: 0 // "fake" init; overwritten by componentDidMount as cannot access this.context.projectsData from constructor
       },
       error: false
     };
+  }
+
+  componentDidMount() {
+    // use Object.assign to update `idx` without changing `text`
+    const newInputValue = Object.assign(this.state.inputValue, {
+      idx: this.context.projectsData.length
+    });
+
+    this.setState({
+      inputValue: newInputValue
+    });
   }
 
   clickHandler = () => {
@@ -35,13 +46,13 @@ class ProjectInput extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject({name: inputValue.text}, inputValue.idx);
+    this.context.addProject({name: inputValue.text}, inputValue.idx/*(inputValue.idx) ? inputValue.idx : this.context.projectsData.length*/);
 
     // clear input field
     this.setState({
       inputValue: {
         text: "",
-        idx: 0
+        idx: this.context.projectsData.length
       }
     });
   }
@@ -49,29 +60,26 @@ class ProjectInput extends Component {
   textChangeHandler = e => {
     // See reference re Event Pooling: https://reactjs.org/docs/events.html#event-pooling
     const targetValue = e.target.value;
+
+    const newInputValue = Object.assign(this.state.inputValue, {
+      text: targetValue
+    });
     
-    this.setState(prevState => (
-      {
-        inputValue: {
-          text: targetValue,
-          idx: prevState.inputValue.idx
-        }
-      }
-    ));
+    this.setState({
+      inputValue: newInputValue,
+      error: false
+    });
   }
 
   taskNumChangeHandler = e => {
     // See reference re Event Pooling: https://reactjs.org/docs/events.html#event-pooling
     const targetValue = e.target.value;
 
-    this.setState(prevState => (
-      {
-        inputValue: {
-          text: prevState.inputValue.text,
-          idx: targetValue
-        } 
-      }
-    ));
+    const newInputValue = Object.assign(this.state.inputValue, {
+      idx: targetValue
+    });
+
+    this.setState({inputValue: newInputValue});
   }
 
   render() {
@@ -95,10 +103,11 @@ class ProjectInput extends Component {
                   value={this.state.inputValue.text}
                   onChange={e => this.textChangeHandler(e)}/>
 
-                <label>Task Number:</label>
+                <label>Task Number/Priority:</label>
                 <select 
                   value={this.state.inputValue.idx}
                   onChange={e => this.taskNumChangeHandler(e)}>
+                  <option value={value.projectsData.length}>Last (default)</option>  
                   {
                     value.projectsData.map((project, i) => (
                       <option key={i} value={i}>{i+1}</option>
