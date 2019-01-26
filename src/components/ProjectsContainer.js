@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import /*{ */ProjectContext/*, ProjectContextConsumer }*/ from '../context/ProjectContext';
+import ProjectContext from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
 
 import {logMsg} from '../helpers';
