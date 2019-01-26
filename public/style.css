@@ -132,6 +132,8 @@ header {
 	border-radius: 4px;
 	box-shadow: 2px 2px 4px #666;
 	cursor: pointer;
+	-webkit-transition: all 400ms;
+	-moz-transition: all 400ms;
 	transition: all 400ms;
 }
 
@@ -150,8 +152,15 @@ header {
 }
 
 .project-node .node-delete-btn {
-	color: #a84545;
+	color: #8c2020;
+	opacity: 0.7;
 	cursor: pointer;
+	-webkit-transition: all 400ms;
+	-moz-transition: all 400ms;
+	transition: all 400ms;
+}
+.project-node .node-delete-btn:hover {
+	opacity: 1;
 }
 
 .project-node .node-copy i {
