@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ProjectContext, ProjectContextConsumer } from '../context/ProjectContext';
+import /*{ */ProjectContext/*, ProjectContextConsumer }*/ from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
 
 import {logMsg} from '../helpers';
@@ -74,7 +74,7 @@ class ProjectsContainer extends Component {
 
   render() {
   	return (
-  		<ProjectContextConsumer name="ProjectContextConsumer">
+  		<ProjectContext.Consumer name="ProjectContextConsumer">
   			{
   				value => {
   					// logMsg('ProjectsContainer values', value);
@@ -106,7 +106,7 @@ class ProjectsContainer extends Component {
             );
   				}
   			}
-  		</ProjectContextConsumer>
+  		</ProjectContext.Consumer>
   	);
   }
 }
