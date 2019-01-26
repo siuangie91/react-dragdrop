@@ -53,6 +53,10 @@ class ProjectsContainer extends Component {
     this.setState({ignoringDragOver: false}); // reset
   }
 
+  deleteHandler = idx => {
+  	this.context.deleteProject(idx);
+  }
+
   setNodeColor = idx => {
   	const numNodes = this.context.projectsData.length;
 
@@ -86,6 +90,7 @@ class ProjectsContainer extends Component {
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={() => this.handleDragOver(i)}
 						      				dragEndHandler={this.handleDragEnd}
+						      				deleteHandler={() => this.deleteHandler(i)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>
 						      	))	

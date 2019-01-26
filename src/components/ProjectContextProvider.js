@@ -4,6 +4,7 @@ import {ProjectContext} from '../context/ProjectContext';
 
 import projectsData from '../data/projects.json';
 
+import {logMsg} from '../helpers';
 
 class ProjectContextProvider extends Component {
   constructor(props) {
@@ -19,13 +20,27 @@ class ProjectContextProvider extends Component {
       {
         projectsData: [...prevState.projectsData, newProject]
       }
-    ));
+    ), () => {
+    	logMsg('Data after adding:', this.state.projectsData);
+    });
   }
 
   updateProjects = newProjectData => {
   	this.setState({
   		projectsData: newProjectData
   	});
+  }
+
+  deleteProject = idx => {
+  	const currentProjects = this.state.projectsData;
+  	logMsg('deleting', currentProjects[idx]);
+
+
+  	this.setState(prevState => (
+	  	{
+	  		projectsData: prevState.projectsData.filter(item => item !== currentProjects[idx])	
+	  	}
+  	));
   }
 
   render() {
@@ -35,7 +50,8 @@ class ProjectContextProvider extends Component {
         value={{
           projectsData: this.state.projectsData,
           addProject: this.addProject,
-          updateProjects: this.updateProjects
+          updateProjects: this.updateProjects,
+          deleteProject: this.deleteProject
         }}>
         {this.props.children}
       </ProjectContext.Provider>

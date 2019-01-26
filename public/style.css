@@ -76,6 +76,12 @@ header {
 .project-node {
 	position: relative;
 	margin-bottom: 14px;
+}
+
+.project-node .node-copy {
+	display: inline-block;
+	position: relative;
+	width: calc(100% - 30px);
 	padding: 10px;
 	border-radius: 4px;
 	box-shadow: 2px 2px 4px #666;
@@ -83,12 +89,30 @@ header {
 	transition: all 400ms;
 }
 
-.project-node:hover {
+.project-node .node-copy:hover {
 	box-shadow: 4px 4px 4px #666;
 }
 
-.project-node i.fas {
+.project-node .node-delete-btn,
+.project-node .node-copy i {
 	position: absolute;
+	top: 50%;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.project-node .node-delete-btn {
+	color: #a84545;
+	cursor: pointer;
+}
+
+.project-node .node-copy i {
 	right: 10px;
 }
+
+
+
+
 

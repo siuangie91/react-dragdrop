@@ -27,7 +27,6 @@ class ProjectInput extends Component {
     logMsg('Added task:', inputText);
 
     this.context.addProject({name: inputText});
-    logMsg('Data after adding:', this.context.projectsData);
 
     // clear input field
     this.setState({inputText: ""})
