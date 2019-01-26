@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ProjectContextConsumer } from '../App';
+import { ProjectContextConsumer } from '../context/ProjectContext';
 
 class ProjectInput extends Component {
   constructor() {

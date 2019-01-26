@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 
+import ProjectContextProvider from './components/ProjectContextProvider';
 import ProjectsContainer from './components/ProjectsContainer';
 import ProjectInput from './components/ProjectInput';
-import ProjectContextProvider from './components/ProjectContextProvider';
-
-import projectsData from './data/projects.json';
-
-export const ProjectContext = React.createContext(projectsData);
-export const ProjectContextConsumer = ProjectContext.Consumer;
 
 
 class App extends Component {

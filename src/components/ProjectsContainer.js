@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 
 import ProjectNode from './ProjectNode';
 
-// import projectsData from '../data/projects.json';
-import { ProjectContextConsumer } from '../App';
+import { ProjectContextConsumer } from '../context/ProjectContext';
 
 class ProjectsContainer extends Component {
 	constructor() {
@@ -43,7 +42,7 @@ class ProjectsContainer extends Component {
     projects.splice(idx, 0, this.projectToMove);
 
     // set the projectsData in the contextValue to the new list order
-    contextValue.rearrangeProjects(projects);
+    contextValue.updateProjects(projects);
 	}
 
 	handleDragEnd = () => {

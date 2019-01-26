@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {ProjectContext} from '../App';
+import {ProjectContext} from '../context/ProjectContext';
 
 import projectsData from '../data/projects.json';
 
@@ -22,7 +22,7 @@ class ProjectContextProvider extends Component {
     ));
   }
 
-  rearrangeProjects = newProjectData => {
+  updateProjects = newProjectData => {
   	this.setState({
   		projectsData: newProjectData
   	});
@@ -35,7 +35,7 @@ class ProjectContextProvider extends Component {
         value={{
           projectsData: this.state.projectsData,
           addProject: this.addProject,
-          rearrangeProjects: this.rearrangeProjects
+          updateProjects: this.updateProjects
         }}>
         {this.props.children}
       </ProjectContext.Provider>
