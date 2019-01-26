@@ -97,23 +97,30 @@ class ProjectInput extends Component {
                     : 
                     ""
                 }
-                <label>Task Name:</label>
-                <input type="text" placeholder="XYZ Task" 
-                  ref={this.inputRef}
-                  value={this.state.inputValue.text}
-                  onChange={e => this.textChangeHandler(e)}/>
+                <div className="form-control">
+                  <label>Task Name:</label>
+                  <input type="text" placeholder="XYZ Task" 
+                    ref={this.inputRef}
+                    value={this.state.inputValue.text}
+                    onChange={e => this.textChangeHandler(e)}/>
+                </div> 
 
-                <label>Task Number/Priority:</label>
-                <select 
-                  value={this.state.inputValue.idx}
-                  onChange={e => this.taskNumChangeHandler(e)}>
-                  <option value={value.projectsData.length}>Last (default)</option>  
-                  {
-                    value.projectsData.map((project, i) => (
-                      <option key={i} value={i}>{i+1}</option>
-                    ))
-                  }
-                </select>
+                <div className="form-control">
+                  <label>Task Number/Priority:</label>
+                  <select 
+                    value={this.state.inputValue.idx}
+                    onChange={e => this.taskNumChangeHandler(e)}>
+                    <option value={value.projectsData.length}>Last (default)</option>  
+                    {
+                      value.projectsData.map((project, i) => (
+                        <option key={i} value={i}>{i+1}</option>
+                      ))
+                    }
+                  </select>
+                  <span className="caret">
+                    <i className="fas fa-caret-down"></i>
+                  </span>
+                </div>
 
                 <button onClick={this.clickHandler}>+ Add Task</button> 
               </section>          

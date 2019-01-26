@@ -39,7 +39,6 @@ header {
 }
 
 .error {
-	padding: 10px 0;
 	font-weight: bold;
 	color: #ff0000;
 }
@@ -60,10 +59,31 @@ header {
 	width: 100%;
 	margin-top: 4px;
 	padding: 8px;
-	border: 1px solid #666;
+	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-shadow: inset 2px 2px 4px #ccc;
 	font-size: 14px;
+}
+
+#project-input select {
+	display: block;
+	width: 100%;
+	margin-top: 4px;
+	border: 1px solid #ccc;
+	padding: 8px;
+	font-size: 14px;
+	-webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+#project-input .form-control {
+	position: relative;
+}
+
+#project-input .form-control .caret {
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
 }
 
 #project-input button {
@@ -76,34 +96,37 @@ header {
   background: #6ca3fc;
   cursor: pointer;
 }
-/*
+
 @media screen and (min-width: 768px) {
 	#project-input {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		align-items: center;
-	}
-
-	#project-input label {
-		width: 100px;
-	}
-
-	#project-input input {
-		margin: 0;
-		width: 350px;
-	}	
-
-	#project-input button {
-		width: 150px;
-		margin: 0;
+		align-items: flex-end;
 	}
 
 	#project-input .error {
 		width: 100%;
 		flex-shrink: 0;	
 	}
-}*/
+
+	#project-input input {
+		width: 300px;
+	}	
+
+	#project-input button {
+		width: 120px;
+    height: 35px;	
+		margin: 0;
+    padding: 0;
+    line-height: 35px;
+	}
+
+	#project-input .form-control .caret {
+		bottom: 8px;
+		right: 10px;
+	}
+}
 
 #projects-container {
 	margin-top: 20px;
