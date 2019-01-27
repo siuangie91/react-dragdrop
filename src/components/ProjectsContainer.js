@@ -22,6 +22,7 @@ class ProjectsContainer extends Component {
 		logMsg('dragging!', this.projectToMove);
 
 		e.dataTransfer.effectAllowed = "move";
+		e.dataTransfer.dropEffect = "move";
 		e.dataTransfer.setData('text/html', e.target);
 	}
 
