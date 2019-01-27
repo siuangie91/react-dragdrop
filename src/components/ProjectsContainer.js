@@ -22,11 +22,16 @@ class ProjectsContainer extends Component {
 		logMsg('dragging!', this.projectToMove);
 
 		e.dataTransfer.effectAllowed = "move";
-		e.dataTransfer.dropEffect = "move";
+		// e.dataTransfer.dropEffect = "move";
+		logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
 		e.dataTransfer.setData('text/html', e.target);
 	}
 
-	handleDragOver = idx => {
+	handleDragOver = (e, idx) => {
+		// prevent default so that drop is allowed (https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/Drag_operations#droptargets)
+		e.preventDefault();
+		e.dataTransfer.dropEffect = "move";
+
 		const draggedOverItem = this.context.projectsData[idx];
 		// logMsg('draggedOverItem', draggedOverItem);
 
@@ -49,10 +54,14 @@ class ProjectsContainer extends Component {
     this.context.updateProjects(projects);
 	}
 
-	handleDragEnd = () => {
+	handleDragEnd = e => {
+		e.preventDefault();
+		e.dataTransfer.effectAllowed = "move";
+		e.dataTransfer.dropEffect = "move";
+
     this.projectToMove = null;
     this.setState({ignoringDragOver: false}); // reset
-  }
+	}
 
   deleteHandler = idx => {
   	this.context.deleteProject(idx);
@@ -95,8 +104,8 @@ class ProjectsContainer extends Component {
 					      				<ProjectNode
 						      				name={project.name}
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
-						      				dragOverHandler={() => this.handleDragOver(i)}
-						      				dragEndHandler={this.handleDragEnd}
+						      				dragOverHandler={e => this.handleDragOver(e, i)}
+													dragEndHandler={e => this.handleDragEnd(e)}
 						      				deleteHandler={() => this.deleteHandler(i)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>
