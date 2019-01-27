@@ -2,6 +2,8 @@
 
 A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks.
 
+**Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
+
 _*Note: `draggable` is not supported on mobile browsers._
 
 ### Implementation
