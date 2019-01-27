@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ProjectContext from '../context/ProjectContext';
+import ProjectContext from './ProjectContext';
 
 import projectsData from '../data/projects.json';
 

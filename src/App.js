@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ProjectContextProvider from './components/ProjectContextProvider';
+import ProjectContextProvider from './context/ProjectContextProvider';
 import ProjectsContainer from './components/ProjectsContainer';
 import ProjectInput from './components/ProjectInput';
 
