@@ -1,3 +1,5 @@
+export const isTouchDevice = ('ontouchstart' in window);
+
 let dev_console = getCookie("dev_console");
 if(dev_console) { // overwrite cookie and set to expire in 24 hrs
   document.cookie = "dev_console=true; max-age=60*60*24;"

@@ -4,12 +4,12 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
-_*Note: `draggable` is not supported on mobile browsers._
+_*Note: `draggable` is not supported on touch screen-only devices._
 
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
 2. Drag tasks to reprioritize them.
-    - _*Note: `draggable` is not supported on mobile browsers._
+    - _*Note: `draggable` is not supported on touch screen-only devices._
 2. You can add tasks at a desired insertion point (index number). By default, it will be inserted at the end of the list.
     - If the task name is empty, you will get an error message.
 3. You can delete tasks.
