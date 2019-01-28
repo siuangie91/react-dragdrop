@@ -18,7 +18,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 1. Feature is implemented using the HTML5 `draggable` property.
 2. Dummy data are stored in `src/data/projects.json`.
     - Currently, the data only have one property, `name`. This is because I may add other properties later on.
-3. I used the `Context` API to manage shared state between the input field (`ProjectInput`) and the task-list display (`ProjectsContainer`). 
+3. I used the [`Context` API](https://reactjs.org/docs/context.html) to manage shared state between the input field (`ProjectInput`) and the task-list display (`ProjectsContainer`). 
 
 ### Console Messages
 I kept my console messages in there because I like to keep a record of what my thought process was. However, I have put all these messages behind a cookie that expires after 24 hours so that not everyone can see them (unless you're reading this, of course :wink:). If you'd like to see the messages, run
