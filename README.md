@@ -4,7 +4,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
-:warning: _*Note: `draggable` is not supported on touch screen-only devices._ :warning:
+:warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
