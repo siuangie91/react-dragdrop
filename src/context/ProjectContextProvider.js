@@ -38,12 +38,9 @@ class ProjectContextProvider extends Component {
   	const currentProjects = this.state.projectsData;
   	logMsg('deleting', currentProjects[idx]);
 
-
-  	this.setState(prevState => (
-	  	{
-	  		projectsData: prevState.projectsData.filter(item => item !== currentProjects[idx])	
-	  	}
-  	));
+    this.setState({
+      projectsData: currentProjects.filter(item => item !== currentProjects[idx])
+    });
   }
 
   render() {
