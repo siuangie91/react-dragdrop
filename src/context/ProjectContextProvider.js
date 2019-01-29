@@ -19,11 +19,9 @@ class ProjectContextProvider extends Component {
   	let projectList = this.state.projectsData
   	projectList.splice(idx, 0, newProject);
 
-    this.setState(prevState => (
-      {
-        projectsData: projectList
-      }
-    ), () => {
+    this.setState({
+      projectsData: projectList
+    }, () => {
     	logMsg('Data after adding:', this.state.projectsData);
     });
   }
