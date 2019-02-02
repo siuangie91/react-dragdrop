@@ -70,7 +70,6 @@ class ProjectsContainer extends Component {
 	}
 	
 	editHandler = (e, idx) => {
-		// this.context.editProject(idx);
 		const nodeCopyContainer = e.currentTarget.previousSibling.childNodes[0];
 		nodeCopyContainer.setAttribute('contenteditable', true);
 		nodeCopyContainer.focus();
@@ -79,19 +78,18 @@ class ProjectsContainer extends Component {
 
 		nodeCopyContainer.addEventListener('keyup', () => {
 			newName = nodeCopyContainer.innerText;
-			logMsg('after edit', newName);
 		});
 
 		nodeCopyContainer.addEventListener('blur', () => {
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
 			let projToEdit = this.context.projectsData[idx];
-			const restOfProjects = this.context.projectsData.filter(item => item !== projToEdit);
-
 			projToEdit.name = newName;
 
-			restOfProjects.splice(idx, 0 , projToEdit);
-			this.context.updateProjects(restOfProjects);			
+			const projectList = this.context.projectsData;
+			projectList.splice(idx, 1 , projToEdit);
+
+			this.context.updateProjects(projectList);			
 		});
 	}
 

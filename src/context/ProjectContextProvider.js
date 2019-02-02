@@ -29,9 +29,7 @@ class ProjectContextProvider extends Component {
   updateProjects = newProjectData => {
   	this.setState({
   		projectsData: newProjectData
-  	}, () => {
-      logMsg('updated projects:', this.state.projectsData);
-    });
+  	});
   }
 
   editProject = idx => {
