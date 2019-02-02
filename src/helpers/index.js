@@ -4,9 +4,14 @@ let dev_console = getCookie("dev_console");
 if(dev_console) { // overwrite cookie and set to expire in 24 hrs
   document.cookie = "dev_console=true; max-age=60*60*24;"
 }
-export function logMsg(...msgs) { // hide all console msgs behind a cookie
-  if(dev_console) {
-    console.log("[DEV CONSOLE MSG]: ", ...msgs);
+export function logMsg(...msgs) { 
+  if(document.location.hostname === "localhost") {
+    console.log("[DEV CONSOLE MSG]:", ...msgs);
+  }
+  else { // hide all console msgs behind a cookie in prod
+    if(dev_console) {
+      console.log("[DEV CONSOLE MSG]:", ...msgs);
+    }
   }
 }
 

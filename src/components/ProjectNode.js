@@ -1,28 +1,35 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
-const ProjectsNode = props => {
-  const {name, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, deleteHandler} = props; 
+const ProjectsNode = React.forwardRef((props, ref) => {
+  const {name, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props; 
 
   return (
-    <Fragment>
-      <div className="project-node" 
-        draggable="true"
-        name={name}
-        onDragStart={dragStartHandler}
-        onDragOver={dragOverHandler}
-        onDragEnd={dragEndHandler}>
-        <div className="node-copy"
-          style={nodeStyles}>
-          <span>{name}</span>
-          <i className="fas fa-arrows-alt" aria-hidden="true"></i>
-        </div>
-        <span className="node-delete-btn"
-          onClick={deleteHandler}>
-          <i className="fas fa-trash-alt"></i>
-        </span>
+    <div className="project-node" 
+      draggable="true"
+      name={name}
+      onDragStart={dragStartHandler}
+      onDragOver={dragOverHandler}
+      onDragEnd={dragEndHandler}>
+      
+      <div className="node-copy"
+        ref={ref}
+        style={nodeStyles}>
+        <span>{name}</span>
+        <i className="fas fa-arrows-alt" aria-hidden="true"></i>
       </div>
-    </Fragment>
+      
+      <span className="node-btn node-edit-btn"
+        onClick={editHandler}>
+        <i className="fas fa-edit"></i>
+      </span>
+
+      <span className="node-btn node-delete-btn"
+        onClick={deleteHandler}>
+        <i className="fas fa-trash-alt"></i>
+      </span>
+
+    </div>
   );
-};
+})
 
 export default ProjectsNode;

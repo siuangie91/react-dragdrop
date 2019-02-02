@@ -29,7 +29,14 @@ class ProjectContextProvider extends Component {
   updateProjects = newProjectData => {
   	this.setState({
   		projectsData: newProjectData
-  	});
+  	}, () => {
+      logMsg('updated projects:', this.state.projectsData);
+    });
+  }
+
+  editProject = idx => {
+    const projToEdit = this.state.projectsData[idx];
+    logMsg('editing', projToEdit);
   }
 
   deleteProject = idx => {
@@ -38,6 +45,8 @@ class ProjectContextProvider extends Component {
 
     this.setState({
       projectsData: currentProjects.filter(item => item !== currentProjects[idx])
+    }, () => {
+      logMsg('Data after deleting:', this.state.projectsData);
     });
   }
 
@@ -49,6 +58,7 @@ class ProjectContextProvider extends Component {
           projectsData: this.state.projectsData,
           addProject: this.addProject,
           updateProjects: this.updateProjects,
+          editProject: this.editProject,
           deleteProject: this.deleteProject
         }}>
         {this.props.children}

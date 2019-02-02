@@ -15,6 +15,8 @@ class ProjectsContainer extends Component {
 			ignoringDragOver: false,
 			isDragging: false
 		};
+
+		this.projectNodeRef = React.createRef();
 	}
 
   handleDragStart = (e, idx) => {
@@ -65,7 +67,33 @@ class ProjectsContainer extends Component {
 
   deleteHandler = idx => {
   	this.context.deleteProject(idx);
-  }
+	}
+	
+	editHandler = (e, idx) => {
+		// this.context.editProject(idx);
+		const nodeCopyContainer = e.currentTarget.previousSibling.childNodes[0];
+		nodeCopyContainer.setAttribute('contenteditable', true);
+		nodeCopyContainer.focus();
+
+		let newName;
+
+		nodeCopyContainer.addEventListener('keyup', () => {
+			newName = nodeCopyContainer.innerText;
+			logMsg('after edit', newName);
+		});
+
+		nodeCopyContainer.addEventListener('blur', () => {
+			nodeCopyContainer.setAttribute('contenteditable', false);
+
+			let projToEdit = this.context.projectsData[idx];
+			const restOfProjects = this.context.projectsData.filter(item => item !== projToEdit);
+
+			projToEdit.name = newName;
+
+			restOfProjects.splice(idx, 0 , projToEdit);
+			this.context.updateProjects(restOfProjects);			
+		});
+	}
 
   setNodeColor = idx => {
   	const numNodes = this.context.projectsData.length;
@@ -102,10 +130,11 @@ class ProjectsContainer extends Component {
 					      		value.projectsData.map((project,i) => (
 					      			<li key={i}>
 					      				<ProjectNode
-						      				name={project.name}
+													name={project.name}
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={e => this.handleDragOver(e, i)}
 													dragEndHandler={e => this.handleDragEnd(e)}
+													editHandler={e => this.editHandler(e, i)}
 						      				deleteHandler={() => this.deleteHandler(i)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>

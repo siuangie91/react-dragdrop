@@ -185,7 +185,7 @@ header {
 .project-node .node-copy {
 	display: inline-block;
 	position: relative;
-	width: calc(100% - 30px);
+	width: calc(100% - 70px);
 	padding: 10px;
 	border-radius: 4px;
 	box-shadow: 2px 2px 4px #666;
@@ -199,7 +199,7 @@ header {
 	box-shadow: 4px 4px 4px #666;
 }
 
-.project-node .node-delete-btn,
+.project-node .node-btn,
 .project-node .node-copy i {
 	position: absolute;
 	top: 50%;
@@ -209,16 +209,24 @@ header {
 	transform: translateY(-50%);
 }
 
-.project-node .node-delete-btn {
-	color: #8c2020;
+.project-node .node-btn {
 	opacity: 0.7;
 	cursor: pointer;
 	-webkit-transition: all 400ms;
 	-moz-transition: all 400ms;
 	transition: all 400ms;
 }
-.project-node .node-delete-btn:hover {
+.project-node .node-btn:hover {
 	opacity: 1;
+}
+
+.project-node .node-edit-btn {
+	color: #333;
+	right: 30px;
+}
+
+.project-node .node-delete-btn {
+	color: #8c2020;
 }
 
 .project-node .node-copy i {
