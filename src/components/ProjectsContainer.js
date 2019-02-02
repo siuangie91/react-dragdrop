@@ -129,6 +129,7 @@ class ProjectsContainer extends Component {
 					      			<li key={i}>
 					      				<ProjectNode
 													name={project.name}
+													ref={this.projectNodeRef}
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={e => this.handleDragOver(e, i)}
 													dragEndHandler={e => this.handleDragEnd(e)}
