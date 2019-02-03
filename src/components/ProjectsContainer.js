@@ -74,20 +74,26 @@ class ProjectsContainer extends Component {
 		nodeCopyContainer.setAttribute('contenteditable', true);
 		nodeCopyContainer.focus();
 
-		let newName;
+		let newName = nodeCopyContainer.innerText;
 
-		nodeCopyContainer.addEventListener('keyup', () => {
-			newName = nodeCopyContainer.innerText;
+		nodeCopyContainer.addEventListener('keyup', e => {
+			if(e.key === "Escape") {
+				nodeCopyContainer.blur();
+			}
+			else {
+				newName = nodeCopyContainer.innerText;
+				// logMsg('newName', newName);
+			}
 		});
 
 		nodeCopyContainer.addEventListener('blur', () => {
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
 			let projToEdit = this.context.projectsData[idx];
-			projToEdit.name = newName;
+			projToEdit.name = newName; // update the name
 
 			const projectList = this.context.projectsData;
-			projectList.splice(idx, 1 , projToEdit);
+			projectList.splice(idx, 1, projToEdit); // replace it in the list
 
 			this.context.updateProjects(projectList);			
 		});
