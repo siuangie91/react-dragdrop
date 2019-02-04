@@ -99,7 +99,7 @@ class ProjectInput extends Component {
                 }
                 <div className="form-control">
                   <label>Task Name:</label>
-                  <input type="text" placeholder="XYZ Task" 
+                  <input type="text" placeholder="XYZ Task"  maxLength="68"
                     ref={this.inputRef}
                     value={this.state.inputValue.text}
                     onChange={e => this.textChangeHandler(e)}/>

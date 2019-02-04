@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProjectContext from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
 
-import {logMsg} from '../helpers';
+import {logMsg, placeCaretAtEnd} from '../helpers';
 
 class ProjectsContainer extends Component {
 	static contextType = ProjectContext;
@@ -72,7 +72,8 @@ class ProjectsContainer extends Component {
 	editHandler = (e, idx) => {
 		const nodeCopyContainer = e.currentTarget.previousSibling.childNodes[0];
 		nodeCopyContainer.setAttribute('contenteditable', true);
-		nodeCopyContainer.focus();
+
+		placeCaretAtEnd(nodeCopyContainer);
 
 		let newName = nodeCopyContainer.innerText;
 

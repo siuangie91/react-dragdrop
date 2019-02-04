@@ -199,6 +199,16 @@ header {
 	box-shadow: 4px 4px 4px #666;
 }
 
+.project-node .node-copy > span {
+	display: inline-block;
+	width: calc(100% - 24px);
+}
+
+.project-node .node-copy > span:focus {
+	outline: none;
+	border-bottom: 1px solid #fff;
+}
+
 .project-node .node-btn,
 .project-node .node-copy i {
 	position: absolute;
