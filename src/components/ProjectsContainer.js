@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import ProjectContext from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
+import MaxLengthModal from './MaxLengthModal';
 
 import {logMsg, placeCaretAtEnd, projectNameMaxLength} from '../helpers';
 
@@ -13,7 +14,8 @@ class ProjectsContainer extends Component {
 
 		this.state = {
 			ignoringDragOver: false,
-			isDragging: false
+			isDragging: false,
+			reachedCharLimit: false
 		};
 
 		this.projectNodeRef = React.createRef();
@@ -79,10 +81,9 @@ class ProjectsContainer extends Component {
 
 		nodeCopyContainer.addEventListener('keyup', e => {
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-				logMsg('length', nodeCopyContainer.innerText.length);
-				alert(`Reached max char count of ${projectNameMaxLength}.`);
+				this.setState({reachedCharLimit: true});
+
 				nodeCopyContainer.blur();
-				// return;
 			}
 			else if(e.key === "Escape") {
 				nodeCopyContainer.blur();
@@ -119,7 +120,11 @@ class ProjectsContainer extends Component {
   		backgroundColor: `rgba(58,96,158,${alpha})`,
   		color: `#${(alpha <= 0.4) ? '000' : 'fff'}`
   	};
-  }
+	}
+	
+	dismissModal = () => {
+		this.setState({reachedCharLimit: false});
+	}
 
   render() {
   	return (
@@ -133,9 +138,13 @@ class ProjectsContainer extends Component {
             		{
             			(value.projectsData.length === 0) ? 
             				<p className="error">You have no tasks!</p>
-            				:
-            				""
-            		}
+            				: ""
+								}
+								{
+									this.state.reachedCharLimit ? 
+										<MaxLengthModal modalClickHandler={this.dismissModal} />
+										: ""
+								}
 				      	<ol>
 				      		{
 					      		value.projectsData.map((project,i) => (
