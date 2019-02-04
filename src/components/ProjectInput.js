@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ProjectContext from '../context/ProjectContext';
 
-import {logMsg} from '../helpers';
+import {logMsg, projectNameMaxLength} from '../helpers';
 
 class ProjectInput extends Component {
   static contextType = ProjectContext;
@@ -99,7 +99,7 @@ class ProjectInput extends Component {
                 }
                 <div className="form-control">
                   <label>Task Name:</label>
-                  <input type="text" placeholder="XYZ Task"  maxLength="68"
+                  <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
                     ref={this.inputRef}
                     value={this.state.inputValue.text}
                     onChange={e => this.textChangeHandler(e)}/>

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProjectContext from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
 
-import {logMsg, placeCaretAtEnd} from '../helpers';
+import {logMsg, placeCaretAtEnd, projectNameMaxLength} from '../helpers';
 
 class ProjectsContainer extends Component {
 	static contextType = ProjectContext;
@@ -78,7 +78,11 @@ class ProjectsContainer extends Component {
 		let newName = nodeCopyContainer.innerText;
 
 		nodeCopyContainer.addEventListener('keyup', e => {
-			if(e.key === "Escape") {
+			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
+				// logMsg('length', nodeCopyContainer.innerText.length);
+				return;
+			}
+			else if(e.key === "Escape") {
 				nodeCopyContainer.blur();
 			}
 			else {
