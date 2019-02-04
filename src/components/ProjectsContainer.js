@@ -79,8 +79,10 @@ class ProjectsContainer extends Component {
 
 		nodeCopyContainer.addEventListener('keyup', e => {
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-				// logMsg('length', nodeCopyContainer.innerText.length);
-				return;
+				logMsg('length', nodeCopyContainer.innerText.length);
+				alert(`Reached max char count of ${projectNameMaxLength}.`);
+				nodeCopyContainer.blur();
+				// return;
 			}
 			else if(e.key === "Escape") {
 				nodeCopyContainer.blur();
