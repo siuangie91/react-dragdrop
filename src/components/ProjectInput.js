@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import ProjectContext from '../context/ProjectContext';
+import Button from './Button';
 
 import {logMsg, projectNameMaxLength} from '../helpers';
 
@@ -122,7 +123,7 @@ class ProjectInput extends Component {
                   </span>
                 </div>
 
-                <button onClick={this.clickHandler}>+ Add Task</button> 
+                <Button clickHandler={this.clickHandler}>+ Add Task</Button>
               </section>          
             );
           }
