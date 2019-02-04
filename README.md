@@ -13,12 +13,15 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
     - If the task name is empty, you will get an error message.
 4. You can delete tasks.
     - If the task list is empty, you will get a message.
+5. Edit tasks by clicking on the pencil icon.
+    - Max character length is 68. Hitting the max character length triggers a dismissable modal.
 
 ### Implementation
 1. Feature is implemented using the HTML5 `draggable` property.
 2. Dummy data are stored in `src/data/projects.json`.
     - Currently, the data only have one property, `name`. This is because I may add other properties later on.
 3. I used the [`Context` API](https://reactjs.org/docs/context.html) to manage shared state between the input field (`ProjectInput`) and the task-list display (`ProjectsContainer`). 
+4. Task editing was done by making the `span` containing the project node name `contenteditable` and `focus`ing the cursor into the `span`. `contenteditable` is reset to `false` on `blur` and the new project name is saved.
 
 ### Console Messages
 I kept my console messages in there because I like to keep a record of what my thought process was. However, I have put all these messages behind a cookie that expires after 24 hours so that not everyone can see them (unless you're reading this, of course :wink:). If you'd like to see the messages, run
