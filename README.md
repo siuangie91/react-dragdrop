@@ -6,6 +6,10 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
+#### To-do:
+* Make reusable modal/overlay component
+* Dynamic `ref`s
+
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
 2. Drag tasks to reprioritize them.
