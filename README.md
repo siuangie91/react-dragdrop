@@ -7,6 +7,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
 #### To-do:
+* Add route `/details/:project_id` that shows project details
 * Dynamic `ref`s
 
 ### Functionality
