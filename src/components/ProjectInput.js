@@ -106,7 +106,7 @@ class ProjectInput extends Component {
                     onChange={e => this.textChangeHandler(e)}/>
                 </FormControl>
 
-                <FormControl labelName="Tas Number/Priority">
+                <FormControl labelName="Task Number/Priority">
                   <select 
                     value={this.state.inputValue.idx}
                     onChange={e => this.taskNumChangeHandler(e)}>
@@ -121,7 +121,7 @@ class ProjectInput extends Component {
                     <i className="fas fa-caret-down"></i>
                   </span>
                 </FormControl>
-                
+
                 <Button clickHandler={this.clickHandler}>+ Add Task</Button>
               </section>          
             );

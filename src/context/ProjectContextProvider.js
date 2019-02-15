@@ -37,12 +37,12 @@ class ProjectContextProvider extends Component {
     logMsg('editing', projToEdit);
   }
 
-  deleteProject = idx => {
+  deleteProject = id => {
   	const currentProjects = this.state.projectsData;
-  	logMsg('deleting', currentProjects[idx]);
+  	logMsg('deleting', currentProjects.filter(item => item.id === id)[0].name);
 
     this.setState({
-      projectsData: currentProjects.filter(item => item !== currentProjects[idx])
+      projectsData: currentProjects.filter(item => item.id !== id)
     }, () => {
       logMsg('Data after deleting:', this.state.projectsData);
     });
