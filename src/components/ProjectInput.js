@@ -5,7 +5,7 @@ import Button from './_shared/Button';
 
 import {logMsg, projectNameMaxLength} from '../helpers';
 import FormControl from './_shared/FormControl';
-import { maxId, getRandomInteger } from '../helpers/index';
+import { getRandomInteger } from '../helpers/index';
 
 class ProjectInput extends Component {
   static contextType = ProjectContext;
@@ -96,10 +96,10 @@ class ProjectInput extends Component {
   // generate a random ID number that cannot be greater than a given limit
   generateId = () => {
     const {currentIds} = this.state;
-    let newId = getRandomInteger(maxId);
+    let newId = getRandomInteger();
     logMsg('newId', newId);
     while(currentIds.indexOf(newId) > -1) {
-      newId = getRandomInteger(maxId);
+      newId = getRandomInteger();
       logMsg('not unique; generated new one: ', newId);
     }
     logMsg('actual newId', newId); 
