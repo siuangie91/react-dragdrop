@@ -5,6 +5,7 @@ import Button from './_shared/Button';
 
 import {logMsg, projectNameMaxLength} from '../helpers';
 import FormControl from './_shared/FormControl';
+import { maxId } from '../helpers/index';
 
 class ProjectInput extends Component {
   static contextType = ProjectContext;
@@ -30,7 +31,10 @@ class ProjectInput extends Component {
     });
 
     this.setState({
-      inputValue: newInputValue
+      inputValue: newInputValue,
+      // store a list of all the IDs -- this will NOT change when projects are updated/created; 
+      // ensures unique ID for new projects
+      currentIds: this.context.projectsData.map(item => item.id) 
     });
   }
 
@@ -48,7 +52,12 @@ class ProjectInput extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject({name: inputValue.text}, inputValue.idx);
+    this.context.addProject(
+      {
+        id: this.generateId(),
+        name: inputValue.text
+      }, 
+      inputValue.idx);
 
     // clear input field
     this.setState({
@@ -84,6 +93,21 @@ class ProjectInput extends Component {
     this.setState({inputValue: newInputValue});
   }
 
+  // generate a random ID number that cannot be greater than a given limit
+  generateId = () => {
+    const {currentIds} = this.state;
+    let newId = this.getRandomInteger(maxId);
+    logMsg('newId', newId);
+    while(currentIds.indexOf(newId) > -1) {
+      newId = this.getRandomInteger(maxId);
+      logMsg('not unique; generated new one: ', newId);
+    }
+    logMsg('actual newId', newId); 
+    return newId;
+  }
+
+  getRandomInteger = max => Math.floor((Math.random() * max) + 1);
+  
   render() {
     return (
       <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">

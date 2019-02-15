@@ -16,7 +16,7 @@ class ProjectContextProvider extends Component {
   }
 
   addProject = (newProject, idx) => {
-  	let projectList = this.state.projectsData
+  	let projectList = this.state.projectsData;
   	projectList.splice(idx, 0, newProject);
 
     this.setState({
