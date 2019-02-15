@@ -3,6 +3,7 @@ export const isTouchDevice = ('ontouchstart' in window);
 export const projectNameMaxLength = 68;
 
 export const maxId = 100;
+export const getRandomInteger = max => Math.floor((Math.random() * max) + 1);
 
 let dev_console = getCookie("dev_console");
 if(dev_console) { // overwrite cookie and set to expire in 24 hrs
