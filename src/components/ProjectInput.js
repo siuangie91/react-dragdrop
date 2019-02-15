@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
 import ProjectContext from '../context/ProjectContext';
-import Button from './Button';
+import Button from './_shared/Button';
 
 import {logMsg, projectNameMaxLength} from '../helpers';
+import FormControl from './_shared/FormControl';
 
 class ProjectInput extends Component {
   static contextType = ProjectContext;
@@ -98,16 +99,14 @@ class ProjectInput extends Component {
                     : 
                     ""
                 }
-                <div className="form-control">
-                  <label>Task Name:</label>
+                <FormControl labelName="Task Name">
                   <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
                     ref={this.inputRef}
                     value={this.state.inputValue.text}
                     onChange={e => this.textChangeHandler(e)}/>
-                </div> 
+                </FormControl>
 
-                <div className="form-control">
-                  <label>Task Number/Priority:</label>
+                <FormControl labelName="Tas Number/Priority">
                   <select 
                     value={this.state.inputValue.idx}
                     onChange={e => this.taskNumChangeHandler(e)}>
@@ -121,8 +120,8 @@ class ProjectInput extends Component {
                   <span className="caret">
                     <i className="fas fa-caret-down"></i>
                   </span>
-                </div>
-
+                </FormControl>
+                
                 <Button clickHandler={this.clickHandler}>+ Add Task</Button>
               </section>          
             );

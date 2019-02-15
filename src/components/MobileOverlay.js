@@ -1,6 +1,5 @@
 import React from 'react';
-
-import Overlay from './Overlay';
+import Overlay from './_shared/Overlay';
 
 const MobileOverlay = () => (
   <Overlay idName="mbl-overlay">
