@@ -28,6 +28,10 @@ const ProjectsNode = React.forwardRef((props, ref) => {
         <i className="fas fa-trash-alt"></i>
       </span>
 
+      <span className="node-btn">
+        <i className="fas fa-info-circle"></i>
+      </span>
+
     </div>
   );
 })

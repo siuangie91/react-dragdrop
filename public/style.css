@@ -198,7 +198,7 @@ header {
 .project-node .node-copy {
 	display: inline-block;
 	position: relative;
-	width: calc(100% - 70px);
+	width: calc(100% - 100px);
 	padding: 10px;
 	border-radius: 4px;
 	box-shadow: 2px 2px 4px #666;
@@ -245,11 +245,12 @@ header {
 
 .project-node .node-edit-btn {
 	color: #333;
-	right: 30px;
+	right: 60px;
 }
 
 .project-node .node-delete-btn {
 	color: #8c2020;
+	right: 30px;
 }
 
 .project-node .node-copy i {
