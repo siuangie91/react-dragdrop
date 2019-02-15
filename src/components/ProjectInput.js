@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
 import ProjectContext from '../context/ProjectContext';
-import Button from './Button';
+import Button from './_shared/Button';
 
 import {logMsg, projectNameMaxLength} from '../helpers';
+import FormControl from './_shared/FormControl';
+import { getRandomInteger } from '../helpers/index';
 
 class ProjectInput extends Component {
   static contextType = ProjectContext;
@@ -29,7 +31,10 @@ class ProjectInput extends Component {
     });
 
     this.setState({
-      inputValue: newInputValue
+      inputValue: newInputValue,
+      // store a list of all the IDs -- this will NOT change when projects are updated/created; 
+      // ensures unique ID for new projects
+      currentIds: this.context.projectsData.map(item => item.id) 
     });
   }
 
@@ -47,7 +52,12 @@ class ProjectInput extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject({name: inputValue.text}, inputValue.idx);
+    this.context.addProject(
+      {
+        id: this.generateId(),
+        name: inputValue.text
+      }, 
+      inputValue.idx);
 
     // clear input field
     this.setState({
@@ -83,6 +93,19 @@ class ProjectInput extends Component {
     this.setState({inputValue: newInputValue});
   }
 
+  // generate a random ID number that cannot be greater than a given limit
+  generateId = () => {
+    const {currentIds} = this.state;
+    let newId = getRandomInteger();
+    logMsg('newId', newId);
+    while(currentIds.indexOf(newId) > -1) {
+      newId = getRandomInteger();
+      logMsg('not unique; generated new one: ', newId);
+    }
+    logMsg('actual newId', newId); 
+    return newId;
+  }
+  
   render() {
     return (
       <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">
@@ -98,16 +121,14 @@ class ProjectInput extends Component {
                     : 
                     ""
                 }
-                <div className="form-control">
-                  <label>Task Name:</label>
+                <FormControl labelName="Task Name">
                   <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
                     ref={this.inputRef}
                     value={this.state.inputValue.text}
                     onChange={e => this.textChangeHandler(e)}/>
-                </div> 
+                </FormControl>
 
-                <div className="form-control">
-                  <label>Task Number/Priority:</label>
+                <FormControl labelName="Task Number/Priority">
                   <select 
                     value={this.state.inputValue.idx}
                     onChange={e => this.taskNumChangeHandler(e)}>
@@ -121,7 +142,7 @@ class ProjectInput extends Component {
                   <span className="caret">
                     <i className="fas fa-caret-down"></i>
                   </span>
-                </div>
+                </FormControl>
 
                 <Button clickHandler={this.clickHandler}>+ Add Task</Button>
               </section>          

@@ -16,7 +16,7 @@ class ProjectContextProvider extends Component {
   }
 
   addProject = (newProject, idx) => {
-  	let projectList = this.state.projectsData
+  	let projectList = this.state.projectsData;
   	projectList.splice(idx, 0, newProject);
 
     this.setState({
@@ -37,12 +37,12 @@ class ProjectContextProvider extends Component {
     logMsg('editing', projToEdit);
   }
 
-  deleteProject = idx => {
+  deleteProject = id => {
   	const currentProjects = this.state.projectsData;
-  	logMsg('deleting', currentProjects[idx]);
+  	logMsg('deleting', currentProjects.filter(item => item.id === id)[0].name);
 
     this.setState({
-      projectsData: currentProjects.filter(item => item !== currentProjects[idx])
+      projectsData: currentProjects.filter(item => item.id !== id)
     }, () => {
       logMsg('Data after deleting:', this.state.projectsData);
     });
