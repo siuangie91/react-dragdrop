@@ -18,14 +18,10 @@ class Projects extends Component {
             <MobileOverlay />
             : ""
         }
-        <div>    
-          
-
-          <ProjectContextProvider>
-            <ProjectInput />
-            <ProjectsContainer />  
-          </ProjectContextProvider>
-        </div>
+        <ProjectContextProvider>
+          <ProjectInput />
+          <ProjectsContainer />  
+        </ProjectContextProvider>
       </Fragment>
     );
   }
