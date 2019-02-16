@@ -27,7 +27,7 @@ const ProjectsNode = React.forwardRef((props, ref) => {
         icon="fas fa-trash-alt"
         clickHandler={deleteHandler} />
 
-      <span className="node-btn">
+      <span className="node-btn node-detail-btn">
         <i className="fas fa-info-circle"></i>
       </span>
 
