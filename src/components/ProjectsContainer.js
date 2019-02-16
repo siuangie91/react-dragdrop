@@ -127,7 +127,7 @@ class ProjectsContainer extends Component {
 	}
 
   render() {
-		logMsg('ProjectsContainer this.context', this.context);
+		// logMsg('ProjectsContainer this.context', this.context);
   	return (
   		<ProjectContext.Consumer name="ProjectContextConsumer.ProjectsContainer">
   			{
