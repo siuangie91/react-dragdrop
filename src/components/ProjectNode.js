@@ -1,4 +1,5 @@
 import React from 'react';
+import NodeBtn from './_shared/NodeBtn';
 
 const ProjectsNode = React.forwardRef((props, ref) => {
   const {name, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props; 
@@ -17,16 +18,14 @@ const ProjectsNode = React.forwardRef((props, ref) => {
         <span>{name}</span>
         <i className="fas fa-arrows-alt" aria-hidden="true"></i>
       </div>
-      
-      <span className="node-btn node-edit-btn"
-        onClick={editHandler}>
-        <i className="fas fa-edit"></i>
-      </span>
 
-      <span className="node-btn node-delete-btn"
-        onClick={deleteHandler}>
-        <i className="fas fa-trash-alt"></i>
-      </span>
+      <NodeBtn classes="node-edit-btn"
+        icon="fas fa-edit"
+        clickHandler={editHandler} />
+
+      <NodeBtn classes="node-delete-btn"
+        icon="fas fa-trash-alt"
+        clickHandler={deleteHandler} />
 
       <span className="node-btn">
         <i className="fas fa-info-circle"></i>
