@@ -88,7 +88,7 @@ class ProjectsContainer extends Component {
 		// and if it were passed as a param instead, `removeEventListener` could no longer be used
 		// as the event listener would then be an anonymous function.
 		const handleKeyup = e => {
-			// logMsg('key', e.key);
+			logMsg('key', e.key);
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 				this.setState({reachedCharLimit: true});
 
@@ -120,7 +120,7 @@ class ProjectsContainer extends Component {
 
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
-			let projToEdit = this.context.projectsData.filter(item => item.id === id);
+			let projToEdit = this.context.projectsData.find(item => item.id === id);
 			// projToEdit.name = newName; // update the name
 			projToEdit.name = this.state.newName;
 
@@ -131,23 +131,6 @@ class ProjectsContainer extends Component {
 		});
 	}
 
-	
-
-	/* setProjectName = e => {
-		logMsg('key', e.key);
-		if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-			this.setState({reachedCharLimit: true});
-
-			nodeCopyContainer.blur();
-		}
-		else if(e.key === "Escape") {
-			nodeCopyContainer.blur();
-		}
-		else {
-			this.setState({ newName: nodeCopyContainer.innerText });
-			// logMsg('newName', newName);
-		}
-	} */
 
   setNodeColor = idx => {
   	const numNodes = this.context.projectsData.length;
