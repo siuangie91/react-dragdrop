@@ -17,7 +17,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
     - If the task name is empty, you will get an error message.
 4. You can delete tasks.
     - If the task list is empty, you will get a message.
-5. Edit tasks by clicking on the pencil icon. Once you exit text area, the change is saved automatically.
+5. Edit tasks by clicking on the pencil icon. Once you hit `Enter` or exit text area (e.g., `Esc` or click off), the change is saved automatically.
     - Max character length is 68. Hitting the max character length triggers a dismissable modal.
 
 ### Implementation

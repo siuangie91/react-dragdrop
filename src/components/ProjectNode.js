@@ -1,8 +1,8 @@
 import React from 'react';
 import NodeBtn from './_shared/NodeBtn';
 
-const ProjectsNode = React.forwardRef((props, ref) => {
-  const {name, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props; 
+const ProjectsNode = props => {
+  const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props;
 
   return (
     <div className="project-node" 
@@ -13,9 +13,11 @@ const ProjectsNode = React.forwardRef((props, ref) => {
       onDragEnd={dragEndHandler}>
       
       <div className="node-copy"
-        ref={ref}
         style={nodeStyles}>
-        <span>{name}</span>
+        <span 
+          ref={projectRef}>
+          {name}
+        </span>
         <i className="fas fa-arrows-alt" aria-hidden="true"></i>
       </div>
 
@@ -29,6 +31,6 @@ const ProjectsNode = React.forwardRef((props, ref) => {
 
     </div>
   );
-})
+};
 
 export default ProjectsNode;

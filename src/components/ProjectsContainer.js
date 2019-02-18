@@ -18,7 +18,11 @@ class ProjectsContainer extends Component {
 			reachedCharLimit: false
 		};
 
-		this.projectNodeRef = React.createRef();
+		// this.projectNodeRef = React.createRef();
+		this.projectNodeRefs = [];
+		this.setProjectNodeRef = (elem, i) => {
+			this.projectNodeRefs[i] = elem;
+		};
 	}
 
   handleDragStart = (e, idx) => {
@@ -71,21 +75,22 @@ class ProjectsContainer extends Component {
   	this.context.deleteProject(id);
 	}
 	
-	editHandler = (e, idx, id) => {
-		const nodeCopyContainer = e.currentTarget.previousSibling.childNodes[0];
+	editHandler = (idx, id) => {
+		const nodeCopyContainer = this.projectNodeRefs[idx];
 		nodeCopyContainer.setAttribute('contenteditable', true);
 
 		placeCaretAtEnd(nodeCopyContainer);
 
 		let newName = nodeCopyContainer.innerText;
 
-		nodeCopyContainer.addEventListener('keyup', e => {
+		nodeCopyContainer.addEventListener('keypress', e => {
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 				this.setState({reachedCharLimit: true});
 
 				nodeCopyContainer.blur();
 			}
-			else if(e.key === "Escape") {
+			else if(e.key === "Escape" || e.key === "Enter") {
+				e.preventDefault();
 				nodeCopyContainer.blur();
 			}
 			else {
@@ -97,7 +102,7 @@ class ProjectsContainer extends Component {
 		nodeCopyContainer.addEventListener('blur', () => {
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
-			let projToEdit = this.context.projectsData.filter(item => item.id === id);
+			let projToEdit = this.context.projectsData.find(item => item.id === id);
 			projToEdit.name = newName; // update the name
 
 			const projectList = this.context.projectsData;
@@ -152,11 +157,11 @@ class ProjectsContainer extends Component {
 					      				<ProjectNode
 													id={project.id}
 													name={project.name}
-													ref={this.projectNodeRef}
+													projectRef={elem => this.setProjectNodeRef(elem, i)}
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={e => this.handleDragOver(e, i)}
 													dragEndHandler={e => this.handleDragEnd(e)}
-													editHandler={e => this.editHandler(e, i, project.id)}
+													editHandler={() => this.editHandler(i, project.id)}
 						      				deleteHandler={() => this.deleteHandler(project.id)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>
