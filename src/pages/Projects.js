@@ -13,7 +13,6 @@ class Projects extends Component {
 
   render() {
     logMsg('isTouchDevice', isTouchDevice);
-    logMsg('Projects this.context', this.context)
 
     return (
       <Fragment>

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ProjectContext from '../context/ProjectContext';
 import ProjectContextProvider from '../context/ProjectContextProvider';
-import { logMsg } from '../helpers/index';
 import NotFound from './NotFound';
 
 class Detail extends Component {
@@ -13,7 +12,6 @@ class Detail extends Component {
         <ProjectContext.Consumer name="ProjectContextConsumer.Detail">
           {
             value => {
-              logMsg('Detail value', value);
 
               const project = value.projectsData.find(item => item.id === +this.props.id);           
 
