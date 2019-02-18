@@ -1,7 +1,7 @@
 import React from 'react';
 import NodeBtn from './_shared/NodeBtn';
 
-const ProjectsNode = props => {
+const ProjectNode = props => {
   const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props;
 
   return (
@@ -33,4 +33,4 @@ const ProjectsNode = props => {
   );
 };
 
-export default ProjectsNode;
+export default ProjectNode;
