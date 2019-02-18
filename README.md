@@ -9,8 +9,8 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 #### To-do:
 * [ ] Add route `/details/:project_id` that shows project details (? maybe not a valuable functionality)
 * [x] Add edit functionality
-* [x] Dynamic `ref`s~~
-* [x] Add project IDs~~
+* [x] Dynamic `ref`s
+* [x] Add project IDs
 
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
