@@ -156,7 +156,6 @@ class ProjectsContainer extends Component {
 					      				<ProjectNode
 													id={project.id}
 													name={project.name}
-													// ref={this.projectNodeRef}
 													projectRef={elem => this.setProjectNodeRef(elem, i)}
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={e => this.handleDragOver(e, i)}

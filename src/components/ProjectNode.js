@@ -1,10 +1,8 @@
 import React from 'react';
 import NodeBtn from './_shared/NodeBtn';
-import { logMsg } from '../helpers';
 
-const ProjectsNode = /* React.forwardRef( */(props) => {
+const ProjectsNode = props => {
   const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props;
-  logMsg('projectRef', projectRef); 
 
   return (
     <div className="project-node" 
@@ -33,6 +31,6 @@ const ProjectsNode = /* React.forwardRef( */(props) => {
 
     </div>
   );
-}/* ) */
+};
 
 export default ProjectsNode;
