@@ -22,6 +22,9 @@ class ProjectsContainer extends Component {
 		this.setProjectNodeRef = (elem, i) => {
 			this.projectNodeRefs[i] = elem;
 		};
+
+		this.nodeCopyContainer = {};
+		this.newName = "";
 	}
 
   handleDragStart = (e, idx) => {
@@ -74,62 +77,53 @@ class ProjectsContainer extends Component {
 	}
 	
 	editHandler = (idx, id) => {
-		const nodeCopyContainer = this.projectNodeRefs[idx];
-		nodeCopyContainer.setAttribute('contenteditable', true);
+		this.nodeCopyContainer = this.projectNodeRefs[idx];
+		this.nodeCopyContainer.setAttribute('contenteditable', true);
 
-		placeCaretAtEnd(nodeCopyContainer);
-
-		let newName = nodeCopyContainer.innerText;
-
-		// This avoids the issue of one keyup/keypress/keydown event firing multiple times
-		// after blurring from the nodeCopyContainer.
-		// These were declared in here as they needed access to `nodeCopyContainer`,
-		// and if it were passed as a param instead, `removeEventListener` could no longer be used
-		// as the event listener would then be an anonymous function.
-		const handleKeyup = e => {
-			// logMsg('key', e.key);
-			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-				this.setState({reachedCharLimit: true});
-
-				nodeCopyContainer.blur();
-			}
-			else if(e.key === "Escape") {
-				nodeCopyContainer.blur();
-			}
-			else {
-				newName = nodeCopyContainer.innerText;
-				// logMsg('newName', newName);
-			}
-		};
-
-		const handleEnterKey = e => {
-			if(e.key === "Enter") {
-				e.preventDefault();
-				nodeCopyContainer.blur();
-			}
-		};
-
-		this.setState({ newName: nodeCopyContainer.innerText }, () => {
-			nodeCopyContainer.addEventListener('keyup', handleKeyup);
-			nodeCopyContainer.addEventListener('keypress', handleEnterKey);
-		});
-
-		nodeCopyContainer.addEventListener('blur', () => {
-			nodeCopyContainer.removeEventListener('keyup', handleKeyup);
-			nodeCopyContainer.removeEventListener('keypress', handleEnterKey);
-
-			nodeCopyContainer.setAttribute('contenteditable', false);
-
-			let projToEdit = this.context.projectsData.find(item => item.id === id);
-			projToEdit.name = newName; // update the name
-
-			const projectList = this.context.projectsData;
-			projectList.splice(idx, 1, projToEdit); // replace it in the list
-
-			this.context.updateProjects(projectList);			
-		});
+		placeCaretAtEnd(this.nodeCopyContainer);
 	}
 
+	handleKeyup = e => {
+		// logMsg('handleKeyup key', e.key);
+		this.setNewNameAsInnertext();
+
+		if(e.key === "Escape") {
+			this.nodeCopyContainer.blur();
+		}
+		else if(this.nodeCopyContainer.innerText.length >= projectNameMaxLength) {
+			this.setState({reachedCharLimit: true});
+
+			this.nodeCopyContainer.blur();
+		}
+		else {
+			this.setNewNameAsInnertext();
+			// logMsg('newName', newName);
+		}
+	}
+
+	handleEnterKey = e => {
+		if(e.key === "Enter") {
+			e.preventDefault();
+			this.setNewNameAsInnertext();
+			this.nodeCopyContainer.blur();
+		}
+	}
+
+	handleBlur = (e, idx, id) => {
+		this.nodeCopyContainer.setAttribute('contenteditable', false);
+
+		let projToEdit = this.context.projectsData.find(item => item.id === id);
+		projToEdit.name = this.newName; // update the name
+
+		const projectList = this.context.projectsData;
+		projectList.splice(idx, 1, projToEdit); // replace it in the list
+
+		this.context.updateProjects(projectList);	
+	}
+
+	setNewNameAsInnertext = () => {
+		this.newName = this.nodeCopyContainer.innerText;
+	}
 
   setNodeColor = idx => {
   	const numNodes = this.context.projectsData.length;
@@ -182,7 +176,10 @@ class ProjectsContainer extends Component {
 						      				dragOverHandler={e => this.handleDragOver(e, i)}
 													dragEndHandler={e => this.handleDragEnd(e)}
 													editHandler={() => this.editHandler(i, project.id)}
-						      				deleteHandler={() => this.deleteHandler(project.id)}
+													deleteHandler={() => this.deleteHandler(project.id)}
+													keyupHandler={e => this.handleKeyup(e)}
+													enterKeyHandler={e => this.handleEnterKey(e)}
+													blurHandler={e => this.handleBlur(e, i, project.id)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>
 						      	))	
