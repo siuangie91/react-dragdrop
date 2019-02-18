@@ -88,7 +88,7 @@ class ProjectsContainer extends Component {
 		// and if it were passed as a param instead, `removeEventListener` could no longer be used
 		// as the event listener would then be an anonymous function.
 		const handleKeyup = e => {
-			logMsg('key', e.key);
+			// logMsg('key', e.key);
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 				this.setState({reachedCharLimit: true});
 
