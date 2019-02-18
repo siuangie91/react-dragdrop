@@ -7,8 +7,10 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
 #### To-do:
-* Add route `/details/:project_id` that shows project details (? maybe not a valuable functionality)
-* Dynamic `ref`s
+* [ ] Add route `/details/:project_id` that shows project details (? maybe not a valuable functionality)
+* [x] Add edit functionality
+* [x] Dynamic `ref`s~~
+* [x] Add project IDs~~
 
 ### Functionality
 1. The UI will display existing tasks (dummy data) on load.
