@@ -83,13 +83,14 @@ class ProjectsContainer extends Component {
 
 		let newName = nodeCopyContainer.innerText;
 
-		nodeCopyContainer.addEventListener('keyup', e => {
+		nodeCopyContainer.addEventListener('keypress', e => {
 			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 				this.setState({reachedCharLimit: true});
 
 				nodeCopyContainer.blur();
 			}
-			else if(e.key === "Escape") {
+			else if(e.key === "Escape" || e.key === "Enter") {
+				e.preventDefault();
 				nodeCopyContainer.blur();
 			}
 			else {
@@ -101,7 +102,7 @@ class ProjectsContainer extends Component {
 		nodeCopyContainer.addEventListener('blur', () => {
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
-			let projToEdit = this.context.projectsData.filter(item => item.id === id);
+			let projToEdit = this.context.projectsData.find(item => item.id === id);
 			projToEdit.name = newName; // update the name
 
 			const projectList = this.context.projectsData;
