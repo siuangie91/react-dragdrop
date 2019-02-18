@@ -81,73 +81,22 @@ class ProjectsContainer extends Component {
 		this.nodeCopyContainer.setAttribute('contenteditable', true);
 
 		placeCaretAtEnd(this.nodeCopyContainer);
-
-		/* let newName = nodeCopyContainer.innerText;
-
-		// This avoids the issue of one keyup/keypress/keydown event firing multiple times
-		// after blurring from the nodeCopyContainer.
-		// These were declared in here as they needed access to `nodeCopyContainer`,
-		// and if it were passed as a param instead, `removeEventListener` could no longer be used
-		// as the event listener would then be an anonymous function.
-		const handleKeyup = e => {
-			// logMsg('key', e.key);
-			if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-				this.setState({reachedCharLimit: true});
-
-				nodeCopyContainer.blur();
-			}
-			else if(e.key === "Escape") {
-				nodeCopyContainer.blur();
-			}
-			else {
-				newName = nodeCopyContainer.innerText;
-				// logMsg('newName', newName);
-			}
-		}; */
-
-		/* const handleEnterKey = e => {
-			if(e.key === "Enter") {
-				e.preventDefault();
-				nodeCopyContainer.blur();
-			}
-		}; */
-
-		// this.setState({ newName: nodeCopyContainer.innerText }, () => {
-		// 	nodeCopyContainer.addEventListener('keyup', handleKeyup);
-		// 	nodeCopyContainer.addEventListener('keypress', handleEnterKey);
-		// });
-
-		/* nodeCopyContainer.addEventListener('blur', () => {
-			nodeCopyContainer.removeEventListener('keyup', handleKeyup);
-			nodeCopyContainer.removeEventListener('keypress', handleEnterKey);
-
-			nodeCopyContainer.setAttribute('contenteditable', false);
-
-			let projToEdit = this.context.projectsData.find(item => item.id === id);
-			projToEdit.name = newName; // update the name
-
-			const projectList = this.context.projectsData;
-			projectList.splice(idx, 1, projToEdit); // replace it in the list
-
-			this.context.updateProjects(projectList);			
-		}); */
 	}
 
 	handleKeyup = e => {
-		logMsg('key', e.key);
+		// logMsg('handleKeyup key', e.key);
+		this.setNewNameAsInnertext();
 
-		this.newName = this.nodeCopyContainer.innerText;
-
-		if(this.nodeCopyContainer.innerText.length >= projectNameMaxLength) {
+		if(e.key === "Escape") {
+			this.nodeCopyContainer.blur();
+		}
+		else if(this.nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 			this.setState({reachedCharLimit: true});
 
 			this.nodeCopyContainer.blur();
 		}
-		else if(e.key === "Escape") {
-			this.nodeCopyContainer.blur();
-		}
 		else {
-			this.newName = this.nodeCopyContainer.innerText;
+			this.setNewNameAsInnertext();
 			// logMsg('newName', newName);
 		}
 	}
@@ -155,6 +104,7 @@ class ProjectsContainer extends Component {
 	handleEnterKey = e => {
 		if(e.key === "Enter") {
 			e.preventDefault();
+			this.setNewNameAsInnertext();
 			this.nodeCopyContainer.blur();
 		}
 	}
@@ -169,6 +119,10 @@ class ProjectsContainer extends Component {
 		projectList.splice(idx, 1, projToEdit); // replace it in the list
 
 		this.context.updateProjects(projectList);	
+	}
+
+	setNewNameAsInnertext = () => {
+		this.newName = this.nodeCopyContainer.innerText;
 	}
 
   setNodeColor = idx => {

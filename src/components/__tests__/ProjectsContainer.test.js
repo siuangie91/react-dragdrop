@@ -1,10 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import ProjectsContainer from '../ProjectsContainer';
-import ProjectContext from '../../context/ProjectContext';
 import ProjectContextProvider from '../../context/ProjectContextProvider';
 import projectsData from '../../data/projects.json';
-import ProjectNode from '../ProjectNode';
 
 describe('ProjectsContainer component', () => {
   it('renders', () => {
@@ -24,7 +22,9 @@ describe('ProjectsContainer component', () => {
   });
 
   describe('project node', () => {
-    const mockEditHandler = jest.fn(e => console.log('mock edit handler'));
+    const mockKeyupHandler = jest.fn(() => {});
+    const mockEnterKeyHandler = jest.fn(() => {});
+    const mockBlurHandler = jest.fn(() => {});
 
     let wrapper, firstEditBtn, firstSpan;
     beforeAll(() => {
@@ -34,19 +34,30 @@ describe('ProjectsContainer component', () => {
         </ProjectContextProvider>
       );
       firstEditBtn = wrapper.find('li .node-edit-btn').first();
-      firstSpan = wrapper.find('li .node-copy span').first().getDOMNode();
+      firstSpan = wrapper.find('li .node-copy span').first();
     });
 
     it('span is contenteditable when edit button is clicked', () => {
       firstEditBtn.simulate('click');
-      expect(firstSpan.getAttribute('contenteditable')).toEqual('true');
+      expect(firstSpan.getDOMNode().getAttribute('contenteditable')).toEqual('true');
     });
 
-    it('keyup event fires only once when editing', () => {
+    it('span contenteditable is false on blur', () => {
       firstEditBtn.simulate('click');
-      console.dir(firstSpan);
-      // firstSpan.simulate('keyup', {key: 'a'});
-      // expect()
+      firstSpan.simulate('blur');
+      expect(firstSpan.getDOMNode().getAttribute('contenteditable')).toEqual('false');
+    });
+
+    it('blurs if Esc key is pressed', () => {
+      firstSpan.simulate('keyup', {key: 'Escape'});
+      const focusedElem = document.activeElement;
+      expect(firstSpan.getDOMNode()).not.toBe(focusedElem);
+    });
+
+    it('blurs if Enter key is pressed', () => {
+      firstSpan.simulate('keypress', {key: 'Enter'});
+      const focusedElem = document.activeElement;
+      expect(firstSpan.getDOMNode()).not.toBe(focusedElem);
     });
   });
 });
