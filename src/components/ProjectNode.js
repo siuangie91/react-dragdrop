@@ -2,7 +2,7 @@ import React from 'react';
 import NodeBtn from './_shared/NodeBtn';
 
 const ProjectNode = props => {
-  const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler} = props;
+  const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler} = props;
 
   return (
     <div className="project-node" 
@@ -15,7 +15,10 @@ const ProjectNode = props => {
       <div className="node-copy"
         style={nodeStyles}>
         <span 
-          ref={projectRef}>
+          ref={projectRef}
+          onKeyUp={keyupHandler}
+          onKeyPress={enterKeyHandler}
+          onBlur={blurHandler}>
           {name}
         </span>
         <i className="fas fa-arrows-alt" aria-hidden="true"></i>

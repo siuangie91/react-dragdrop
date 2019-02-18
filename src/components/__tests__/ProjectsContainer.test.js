@@ -23,13 +23,9 @@ describe('ProjectsContainer component', () => {
     expect(wrapper.find('li')).toHaveLength(projectsData.length);
   });
 
-  /* it('li .node-copy span contains the name of the project', () => {
-    wrapper.find('li .node-copy span').forEach((item, i) => {
-      expect(item.text()).toBe(projectsData[i].name);
-    });
-  }); */
-
   describe('project node', () => {
+    const mockEditHandler = jest.fn(e => console.log('mock edit handler'));
+
     let wrapper, firstEditBtn, firstSpan;
     beforeAll(() => {
       wrapper = mount(
@@ -44,6 +40,13 @@ describe('ProjectsContainer component', () => {
     it('span is contenteditable when edit button is clicked', () => {
       firstEditBtn.simulate('click');
       expect(firstSpan.getAttribute('contenteditable')).toEqual('true');
+    });
+
+    it('keyup event fires only once when editing', () => {
+      firstEditBtn.simulate('click');
+      console.dir(firstSpan);
+      // firstSpan.simulate('keyup', {key: 'a'});
+      // expect()
     });
   });
 });
