@@ -6,10 +6,14 @@ import ProjectInput from '../components/ProjectInput';
 import MobileOverlay from '../components/MobileOverlay';
 
 import {isTouchDevice, logMsg} from '../helpers';
+import ProjectContext from '../context/ProjectContext';
 
 class Projects extends Component {
+  static contextType = ProjectContext;
+
   render() {
     logMsg('isTouchDevice', isTouchDevice);
+    logMsg('Projects this.context', this.context)
 
     return (
       <Fragment>

@@ -261,7 +261,21 @@ header {
 	right: 10px;
 }
 
+#not-found {
+	margin-top: 20px;
+	text-align: center;
+}
 
+#not-found h1 {
+	color: #ff0000;
+	font-size: 3.5rem;
+}
+
+#not-found a {
+	display: block;
+	margin-top: 20px;
+	color: #294470;
+}
 
 
 

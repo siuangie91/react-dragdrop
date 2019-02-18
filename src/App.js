@@ -2,6 +2,7 @@ import React from 'react';
 import { Router } from '@reach/router';
 import Projects from './pages/Projects';
 import Detail from './pages/Detail';
+import NotFound from './pages/NotFound';
 
 const App = () => (
   <div className="App">
@@ -11,6 +12,7 @@ const App = () => (
     <Router>
       <Projects path="/" />
       <Detail path="/detail/:id" />
+      <NotFound default />
     </Router>
   </div>
 );
