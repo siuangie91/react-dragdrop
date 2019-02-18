@@ -18,7 +18,6 @@ class ProjectsContainer extends Component {
 			reachedCharLimit: false
 		};
 
-		// this.projectNodeRef = React.createRef();
 		this.projectNodeRefs = [];
 		this.setProjectNodeRef = (elem, i) => {
 			this.projectNodeRefs[i] = elem;
@@ -30,7 +29,6 @@ class ProjectsContainer extends Component {
 		logMsg('dragging!', this.projectToMove);
 
 		e.dataTransfer.effectAllowed = "move";
-		// e.dataTransfer.dropEffect = "move";
 		logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
 		e.dataTransfer.setData('text/html', e.target);
 	}
