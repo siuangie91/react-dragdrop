@@ -101,13 +101,14 @@ class ProjectsContainer extends Component {
 				this.setState({ newName: nodeCopyContainer.innerText });
 				// logMsg('newName', newName);
 			}
-		}
+		};
+
 		const handleEnterKey = e => {
 			if(e.key === "Enter") {
 				e.preventDefault();
 				nodeCopyContainer.blur();
 			}
-		}
+		};
 
 		this.setState({ newName: nodeCopyContainer.innerText }, () => {
 			nodeCopyContainer.addEventListener('keyup', handleKeyup);
