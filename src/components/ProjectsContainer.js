@@ -15,11 +15,9 @@ class ProjectsContainer extends Component {
 		this.state = {
 			ignoringDragOver: false,
 			isDragging: false,
-			reachedCharLimit: false,
-			newName: ""
+			reachedCharLimit: false
 		};
 
-		// this.projectNodeRef = React.createRef();
 		this.projectNodeRefs = [];
 		this.setProjectNodeRef = (elem, i) => {
 			this.projectNodeRefs[i] = elem;
@@ -31,7 +29,6 @@ class ProjectsContainer extends Component {
 		logMsg('dragging!', this.projectToMove);
 
 		e.dataTransfer.effectAllowed = "move";
-		// e.dataTransfer.dropEffect = "move";
 		logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
 		e.dataTransfer.setData('text/html', e.target);
 	}
@@ -82,6 +79,8 @@ class ProjectsContainer extends Component {
 
 		placeCaretAtEnd(nodeCopyContainer);
 
+		let newName = nodeCopyContainer.innerText;
+
 		// This avoids the issue of one keyup/keypress/keydown event firing multiple times
 		// after blurring from the nodeCopyContainer.
 		// These were declared in here as they needed access to `nodeCopyContainer`,
@@ -98,7 +97,7 @@ class ProjectsContainer extends Component {
 				nodeCopyContainer.blur();
 			}
 			else {
-				this.setState({ newName: nodeCopyContainer.innerText });
+				newName = nodeCopyContainer.innerText;
 				// logMsg('newName', newName);
 			}
 		};
@@ -122,8 +121,7 @@ class ProjectsContainer extends Component {
 			nodeCopyContainer.setAttribute('contenteditable', false);
 
 			let projToEdit = this.context.projectsData.find(item => item.id === id);
-			// projToEdit.name = newName; // update the name
-			projToEdit.name = this.state.newName;
+			projToEdit.name = newName; // update the name
 
 			const projectList = this.context.projectsData;
 			projectList.splice(idx, 1, projToEdit); // replace it in the list
