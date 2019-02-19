@@ -1,8 +1,9 @@
 import React from 'react';
 import NodeBtn from './_shared/NodeBtn';
+import { Link } from '@reach/router';
 
 const ProjectNode = props => {
-  const {name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler} = props;
+  const {id, name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler} = props;
 
   return (
     <div className="project-node" 
@@ -31,6 +32,11 @@ const ProjectNode = props => {
       <NodeBtn classes="node-delete-btn"
         icon="fas fa-trash-alt"
         clickHandler={deleteHandler} />
+
+      <Link to={`/detail/${id}`}
+        className="node-btn node-detail-btn">
+        <i className="fas fa-info-circle"></i>
+      </Link>
 
     </div>
   );

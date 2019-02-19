@@ -198,7 +198,7 @@ header {
 .project-node .node-copy {
 	display: inline-block;
 	position: relative;
-	width: calc(100% - 70px);
+	width: calc(100% - 100px);
 	padding: 10px;
 	border-radius: 4px;
 	box-shadow: 2px 2px 4px #666;
@@ -245,18 +245,55 @@ header {
 
 .project-node .node-edit-btn {
 	color: #333;
-	right: 30px;
+	right: 64px;
 }
 
 .project-node .node-delete-btn {
 	color: #8c2020;
+	right: 34px;
+}
+
+.project-node .node-detail-btn {
+	color: #294470;
 }
 
 .project-node .node-copy i {
 	right: 10px;
 }
 
+.home-link {
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+	color: #294470;
+}
 
+#detail {
+	margin-top: 20px;
+}
 
+#detail table {
+	width: 100%;
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
 
+#detail table th,
+#detail table td {
+	padding: 10px 4px;
+	border-bottom: 1px solid #000;
+}
 
+#detail table thead {
+	background: #ccc;
+}
+
+#not-found {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#not-found h1 {
+	color: #ff0000;
+	font-size: 3.5rem;
+}

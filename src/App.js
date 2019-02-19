@@ -1,36 +1,23 @@
-import React, { Component, Fragment } from 'react';
-
+import React from 'react';
+import { Router } from '@reach/router';
+import Projects from './pages/Projects';
+import Detail from './pages/Detail';
+import NotFound from './pages/NotFound';
 import ProjectContextProvider from './context/ProjectContextProvider';
-import ProjectsContainer from './components/ProjectsContainer';
-import ProjectInput from './components/ProjectInput';
-import MobileOverlay from './components/MobileOverlay';
 
-import {isTouchDevice, logMsg} from './helpers';
-
-class App extends Component {
-  render() {
-    logMsg('isTouchDevice', isTouchDevice);
-
-    return (
-      <Fragment>
-        {
-          (isTouchDevice) ? 
-            <MobileOverlay />
-            : ""
-        }
-        <div className="App">    
-          <header>
-            <h1>To-Do Drag-Drop</h1>
-          </header>
-
-          <ProjectContextProvider>
-            <ProjectInput />
-            <ProjectsContainer />  
-          </ProjectContextProvider>
-        </div>
-      </Fragment>
-    );
-  }
-}
+const App = () => (
+  <div className="App">
+    <header>
+      <h1>To-Do Drag-Drop</h1>
+    </header>
+    <ProjectContextProvider>
+      <Router>
+        <Projects path="/" />
+        <Detail path="/detail/:id" />
+        <NotFound default />
+      </Router>
+    </ProjectContextProvider>
+  </div>
+);
 
 export default App;
