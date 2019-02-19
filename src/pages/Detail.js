@@ -1,37 +1,35 @@
 import React, { Component, Fragment } from 'react';
-import ProjectContext from '../context/ProjectContext';
-import ProjectContextProvider from '../context/ProjectContextProvider';
+import ProjectDetails from '../components/ProjectDetails';
 import NotFound from './NotFound';
+import ProjectContext from '../context/ProjectContext';
+// import { logMsg } from '../helpers';
 
 class Detail extends Component {
   static contextType = ProjectContext;
 
   render() {
+    // logMsg('Detail contextType', this.context);
+
+    let projectId;
+    if(this.props.id) {
+      const foundItem = this.context.projectsData.find(item => item.id === +this.props.id);
+      
+      if(foundItem) {
+        projectId = foundItem.id;
+      }
+    }
+
     return (
-      <ProjectContextProvider>
-        <ProjectContext.Consumer name="ProjectContextConsumer.Detail">
+      (
+        <Fragment>
           {
-            value => {
-
-              const project = value.projectsData.find(item => item.id === +this.props.id);           
-
-              return (
-                <Fragment>
-                  {
-                    project ? 
-                      <Fragment>
-                        <h1>Detail for ID: {this.props.id}</h1>
-                        <h2>Name: {project.name}</h2>
-                      </Fragment>
-                      :
-                      <NotFound />
-                  }
-                </Fragment>
-              );
-            }
+            projectId ?
+              <ProjectDetails projectId={projectId}/>
+              :
+              <NotFound />
           }
-        </ProjectContext.Consumer>
-      </ProjectContextProvider>
+        </Fragment>
+      )
     )
   }
 };

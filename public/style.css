@@ -261,6 +261,33 @@ header {
 	right: 10px;
 }
 
+.home-link {
+	display: block;
+	margin-top: 20px;
+	text-align: center;
+	color: #294470;
+}
+
+#detail {
+	margin-top: 20px;
+}
+
+#detail table {
+	width: 100%;
+	border: 1px solid #000;
+	border-collapse: collapse;
+}
+
+#detail table th,
+#detail table td {
+	padding: 10px 4px;
+	border-bottom: 1px solid #000;
+}
+
+#detail table thead {
+	background: #ccc;
+}
+
 #not-found {
 	margin-top: 20px;
 	text-align: center;
@@ -270,14 +297,3 @@ header {
 	color: #ff0000;
 	font-size: 3.5rem;
 }
-
-#not-found a {
-	display: block;
-	margin-top: 20px;
-	color: #294470;
-}
-
-
-
-
-

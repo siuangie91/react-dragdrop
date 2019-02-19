@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-
 import ProjectContext from './ProjectContext';
-
 import projectsData from '../data/projects.json';
-
 import {logMsg} from '../helpers';
 
 class ProjectContextProvider extends Component {

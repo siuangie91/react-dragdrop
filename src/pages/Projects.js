@@ -1,15 +1,10 @@
 import React, { Component, Fragment } from 'react';
-
-import ProjectContextProvider from '../context/ProjectContextProvider';
 import ProjectsContainer from '../components/ProjectsContainer';
 import ProjectInput from '../components/ProjectInput';
 import MobileOverlay from '../components/MobileOverlay';
-
 import {isTouchDevice, logMsg} from '../helpers';
-import ProjectContext from '../context/ProjectContext';
 
 class Projects extends Component {
-  static contextType = ProjectContext;
 
   render() {
     logMsg('isTouchDevice', isTouchDevice);
@@ -21,10 +16,12 @@ class Projects extends Component {
             <MobileOverlay />
             : ""
         }
-        <ProjectContextProvider>
+        {/* <ProjectContextProvider> */}
+        <Fragment>
           <ProjectInput />
           <ProjectsContainer />  
-        </ProjectContextProvider>
+        </Fragment>
+        {/* </ProjectContextProvider> */}
       </Fragment>
     );
   }
