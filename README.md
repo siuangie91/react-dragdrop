@@ -6,7 +6,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
-**:warning: Known-issue:** 404 page not working in live build, but is fine in dev.
+**:warning: Known-issue:** 404 page not working in live build, but is fine in dev. This has to do with server (which is on LAMP stack) configuration.
 
 ### To-do:
 * [x] Unit test
