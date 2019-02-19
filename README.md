@@ -8,7 +8,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 ### To-do:
 * [x] Unit test
-* [x] Add route `/details/:id` that shows project details (name, ID, priority number)
+* [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
 * [x] Add edit functionality
 * [x] Dynamic `ref`s
 * [x] Add project IDs
