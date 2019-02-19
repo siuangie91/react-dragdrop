@@ -6,7 +6,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
-#### :warning: Known-issue: 404 page not working in live build.
+**:warning: Known-issue:** 404 page not working in live build, but is fine in dev.
 
 ### To-do:
 * [x] Unit test
@@ -33,12 +33,16 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 4. Task editing was done by making the `span` containing the project node name `contenteditable` and `focus`ing the cursor into the `span`. `contenteditable` is reset to `false` on `blur` and the new project name is saved.
 5. Routing is implemented with [Reach Router](https://reach.tech/router). While not necessarily valuable to this application, I wanted to practice creating routed applications. Additionally, I've used `react-router-dom` before and I wanted to try out something different.
 
+## Dev Setup
+1. `git clone` and `npm install`.
+2. `npm start` to start application. `npm run test` to run tests.
+
 ## Console Messages
 I kept my console messages in there because I like to keep a record of what my thought process was. However, I have put all these messages behind a cookie that expires after 24 hours so that not everyone can see them (unless you're reading this, of course :wink:). If you'd like to see the messages, run
 ```javascript
 document.cookie="dev_console=true;"
 ```
-in the console. Then refresh the page. Check the console again to see the messages! 
+in the console. Then refresh the page. Check the console again to see the messages! (Cookie is not necessary when in dev mode.)
 
 Enhanced console logger is found in `src/helpers/index.js`:
 ```javascript
