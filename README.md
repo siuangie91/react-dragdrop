@@ -1,6 +1,6 @@
 # Simple Task/Project Drag-Drop
 
-A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks.
+A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks. Exploring `Context` and `@reach/router`.
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
