@@ -11,9 +11,9 @@ const App = () => (
       <h1>To-Do Drag-Drop</h1>
     </header>
     <ProjectContextProvider>
-      <Router>
+      <Router basepath={`${process.env.PUBLIC_URL}/`}>
         <Projects path="/" />
-        <Detail path="/detail/:id" />
+        <Detail path={`detail/:id`} />
         <NotFound default />
       </Router>
     </ProjectContextProvider>

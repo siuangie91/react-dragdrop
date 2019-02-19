@@ -33,7 +33,7 @@ const ProjectNode = props => {
         icon="fas fa-trash-alt"
         clickHandler={deleteHandler} />
 
-      <Link to={`/detail/${id}`}
+      <Link to={`${process.env.PUBLIC_URL}/detail/${id}`}
         className="node-btn node-detail-btn">
         <i className="fas fa-info-circle"></i>
       </Link>

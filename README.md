@@ -6,6 +6,8 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 :warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
 
+#### :warning: Known-issue: 404 page not working in live build.
+
 ### To-do:
 * [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
