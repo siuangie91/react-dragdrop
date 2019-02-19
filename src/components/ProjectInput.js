@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProjectContext from '../context/ProjectContext';
 import Button from './_shared/Button';
 
-import {logMsg, projectNameMaxLength} from '../helpers';
+import { logMsg, projectNameMaxLength } from '../helpers';
 import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
 
@@ -34,19 +34,19 @@ class ProjectInput extends Component {
       inputValue: newInputValue,
       // store a list of all the IDs -- this will NOT change when projects are updated/created; 
       // ensures unique ID for new projects
-      currentIds: this.context.projectsData.map(item => item.id) 
+      currentIds: this.context.projectsData.map(item => item.id)
     });
   }
 
   clickHandler = () => {
-    const {inputValue} = this.state;
+    const { inputValue } = this.state;
     // put focus back into input field
     this.inputRef.current.focus();
 
     // check if task is empty string
-    if(!inputValue.text.trim()) {
+    if (!inputValue.text.trim()) {
       logMsg('Cannot add an empty task');
-      this.setState({error: true});
+      this.setState({ error: true });
       return;
     }
 
@@ -56,7 +56,7 @@ class ProjectInput extends Component {
       {
         id: this.generateId(),
         name: inputValue.text
-      }, 
+      },
       inputValue.idx);
 
     // clear input field
@@ -75,7 +75,7 @@ class ProjectInput extends Component {
     const newInputValue = Object.assign(this.state.inputValue, {
       text: targetValue
     });
-    
+
     this.setState({
       inputValue: newInputValue,
       error: false
@@ -90,22 +90,22 @@ class ProjectInput extends Component {
       idx: targetValue
     });
 
-    this.setState({inputValue: newInputValue});
+    this.setState({ inputValue: newInputValue });
   }
 
   // generate a random ID number that cannot be greater than a given limit
   generateId = () => {
-    const {currentIds} = this.state;
+    const { currentIds } = this.state;
     let newId = getRandomInteger();
     logMsg('newId', newId);
-    while(currentIds.indexOf(newId) > -1) {
+    while (currentIds.indexOf(newId) > -1) {
       newId = getRandomInteger();
       logMsg('not unique; generated new one: ', newId);
     }
-    logMsg('actual newId', newId); 
+    logMsg('actual newId', newId);
     return newId;
   }
-  
+
   render() {
     return (
       <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">
@@ -116,26 +116,26 @@ class ProjectInput extends Component {
             return (
               <section id="project-input">
                 {
-                  (this.state.error) ? 
+                  (this.state.error) ?
                     <p className="error">Cannot add an empty task!</p>
-                    : 
+                    :
                     ""
                 }
                 <FormControl labelName="Task Name">
                   <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
                     ref={this.inputRef}
                     value={this.state.inputValue.text}
-                    onChange={e => this.textChangeHandler(e)}/>
+                    onChange={e => this.textChangeHandler(e)} />
                 </FormControl>
 
                 <FormControl labelName="Task Number/Priority">
-                  <select 
+                  <select
                     value={this.state.inputValue.idx}
                     onChange={e => this.taskNumChangeHandler(e)}>
-                    <option value={value.projectsData.length}>Last (default)</option>  
+                    <option value={value.projectsData.length}>Last (default)</option>
                     {
                       value.projectsData.map((project, i) => (
-                        <option key={i} value={i}>{i+1}</option>
+                        <option key={i} value={i}>{i + 1}</option>
                       ))
                     }
                   </select>
@@ -145,7 +145,7 @@ class ProjectInput extends Component {
                 </FormControl>
 
                 <Button clickHandler={this.clickHandler}>+ Add Task</Button>
-              </section>          
+              </section>
             );
           }
         }

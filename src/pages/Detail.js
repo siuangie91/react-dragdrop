@@ -11,10 +11,10 @@ class Detail extends Component {
     // logMsg('Detail contextType', this.context);
 
     let projectId;
-    if(this.props.id) {
+    if (this.props.id) {
       const foundItem = this.context.projectsData.find(item => item.id === +this.props.id);
-      
-      if(foundItem) {
+
+      if (foundItem) {
         projectId = foundItem.id;
       }
     }
@@ -24,7 +24,7 @@ class Detail extends Component {
         <Fragment>
           {
             projectId ?
-              <ProjectDetails projectId={projectId}/>
+              <ProjectDetails projectId={projectId} />
               :
               <NotFound />
           }

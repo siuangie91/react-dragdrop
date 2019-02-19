@@ -22,10 +22,6 @@ describe('ProjectsContainer component', () => {
   });
 
   describe('project node', () => {
-    const mockKeyupHandler = jest.fn(() => {});
-    const mockEnterKeyHandler = jest.fn(() => {});
-    const mockBlurHandler = jest.fn(() => {});
-
     let wrapper, firstEditBtn, firstSpan;
     beforeAll(() => {
       wrapper = mount(
@@ -49,13 +45,13 @@ describe('ProjectsContainer component', () => {
     });
 
     it('blurs if Esc key is pressed', () => {
-      firstSpan.simulate('keyup', {key: 'Escape'});
+      firstSpan.simulate('keyup', { key: 'Escape' });
       const focusedElem = document.activeElement;
       expect(firstSpan.getDOMNode()).not.toBe(focusedElem);
     });
 
     it('blurs if Enter key is pressed', () => {
-      firstSpan.simulate('keypress', {key: 'Enter'});
+      firstSpan.simulate('keypress', { key: 'Enter' });
       const focusedElem = document.activeElement;
       expect(firstSpan.getDOMNode()).not.toBe(focusedElem);
     });

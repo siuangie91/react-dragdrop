@@ -3,19 +3,19 @@ import NodeBtn from './_shared/NodeBtn';
 import { Link } from '@reach/router';
 
 const ProjectNode = props => {
-  const {id, name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler} = props;
+  const { id, name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler } = props;
 
   return (
-    <div className="project-node" 
+    <div className="project-node"
       draggable="true"
       name={name}
       onDragStart={dragStartHandler}
       onDragOver={dragOverHandler}
       onDragEnd={dragEndHandler}>
-      
+
       <div className="node-copy"
         style={nodeStyles}>
-        <span 
+        <span
           ref={projectRef}
           onKeyUp={keyupHandler}
           onKeyPress={enterKeyHandler}

@@ -3,7 +3,7 @@ import React from 'react';
 const Button = props => (
   <button onClick={props.clickHandler}>
     {props.children}
-  </button> 
+  </button>
 );
 
 export default Button;

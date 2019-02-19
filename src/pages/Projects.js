@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ProjectsContainer from '../components/ProjectsContainer';
 import ProjectInput from '../components/ProjectInput';
 import MobileOverlay from '../components/MobileOverlay';
-import {isTouchDevice, logMsg} from '../helpers';
+import { isTouchDevice, logMsg } from '../helpers';
 
 class Projects extends Component {
 
@@ -12,16 +12,14 @@ class Projects extends Component {
     return (
       <Fragment>
         {
-          (isTouchDevice) ? 
+          (isTouchDevice) ?
             <MobileOverlay />
             : ""
         }
-        {/* <ProjectContextProvider> */}
         <Fragment>
           <ProjectInput />
-          <ProjectsContainer />  
+          <ProjectsContainer />
         </Fragment>
-        {/* </ProjectContextProvider> */}
       </Fragment>
     );
   }

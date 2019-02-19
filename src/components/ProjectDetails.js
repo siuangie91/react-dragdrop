@@ -10,8 +10,8 @@ class ProjectDetails extends Component {
       <ProjectContext.Consumer name="ProjectContextConsumer.Detail">
         {
           value => {
-            const {projectsData} = value;
-            const project = projectsData.find(item => item.id === +this.props.projectId);           
+            const { projectsData } = value;
+            const project = projectsData.find(item => item.id === +this.props.projectId);
 
             return (
               <section id="detail">
@@ -36,7 +36,7 @@ class ProjectDetails extends Component {
                     </tr>
                   </tbody>
                 </table>
-                
+
                 <HomeLink />
               </section>
             );
