@@ -10,7 +10,8 @@ class ProjectDetails extends Component {
       <ProjectContext.Consumer name="ProjectContextConsumer.Detail">
         {
           value => {
-            const project = value.projectsData.find(item => item.id === +this.props.projectId);           
+            const {projectsData} = value;
+            const project = projectsData.find(item => item.id === +this.props.projectId);           
 
             return (
               <section id="detail">
@@ -31,7 +32,7 @@ class ProjectDetails extends Component {
                     </tr>
                     <tr>
                       <th>Priority:</th>
-                      <td>{value.projectsData.indexOf(project) + 1}</td>
+                      <td>{projectsData.indexOf(project) + 1}</td>
                     </tr>
                   </tbody>
                 </table>

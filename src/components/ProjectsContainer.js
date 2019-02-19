@@ -52,15 +52,17 @@ class ProjectsContainer extends Component {
     		this.setState({ignoringDragOver: true});
       	return;	
     	}   	
-    }
+		}
+		
+		const {projectsData, updateProjects} = this.context;
 
     // filter out the currently dragged item
-    let projects = this.context.projectsData.filter(project => project !== this.projectToMove);
+    let projects = projectsData.filter(project => project !== this.projectToMove);
     // add the dragged item after the dragged over item
     projects.splice(idx, 0, this.projectToMove);
 
     // set the projectsData in the contextValue to the new list order
-    this.context.updateProjects(projects);
+    updateProjects(projects);
 	}
 
 	handleDragEnd = e => {
@@ -76,7 +78,7 @@ class ProjectsContainer extends Component {
   	this.context.deleteProject(id);
 	}
 	
-	editHandler = (idx, id) => {
+	editHandler = idx => {
 		this.nodeCopyContainer = this.projectNodeRefs[idx];
 		this.nodeCopyContainer.setAttribute('contenteditable', true);
 
@@ -85,18 +87,20 @@ class ProjectsContainer extends Component {
 
 	handleKeyup = e => {
 		// logMsg('handleKeyup key', e.key);
-		this.setNewNameAsInnertext();
+		const {nodeCopyContainer, setNewNameAsInnertext} = this;
+		
+		setNewNameAsInnertext();
 
 		if(e.key === "Escape") {
-			this.nodeCopyContainer.blur();
+			nodeCopyContainer.blur();
 		}
-		else if(this.nodeCopyContainer.innerText.length >= projectNameMaxLength) {
+		else if(nodeCopyContainer.innerText.length >= projectNameMaxLength) {
 			this.setState({reachedCharLimit: true});
 
-			this.nodeCopyContainer.blur();
+			nodeCopyContainer.blur();
 		}
 		else {
-			this.setNewNameAsInnertext();
+			setNewNameAsInnertext();
 			// logMsg('newName', newName);
 		}
 	}
@@ -109,16 +113,18 @@ class ProjectsContainer extends Component {
 		}
 	}
 
-	handleBlur = (e, idx, id) => {
+	handleBlur = (idx, id) => {
 		this.nodeCopyContainer.setAttribute('contenteditable', false);
 
-		let projToEdit = this.context.projectsData.find(item => item.id === id);
+		const {projectsData, updateProjects} = this.context;
+
+		let projToEdit = projectsData.find(item => item.id === id);
 		projToEdit.name = this.newName; // update the name
 
-		const projectList = this.context.projectsData;
+		const projectList = projectsData;
 		projectList.splice(idx, 1, projToEdit); // replace it in the list
 
-		this.context.updateProjects(projectList);	
+		updateProjects(projectList);	
 	}
 
 	setNewNameAsInnertext = () => {
@@ -175,11 +181,11 @@ class ProjectsContainer extends Component {
 						      				dragStartHandler={e => this.handleDragStart(e, i)}
 						      				dragOverHandler={e => this.handleDragOver(e, i)}
 													dragEndHandler={e => this.handleDragEnd(e)}
-													editHandler={() => this.editHandler(i, project.id)}
+													editHandler={() => this.editHandler(i)}
 													deleteHandler={() => this.deleteHandler(project.id)}
 													keyupHandler={e => this.handleKeyup(e)}
 													enterKeyHandler={e => this.handleEnterKey(e)}
-													blurHandler={e => this.handleBlur(e, i, project.id)}
+													blurHandler={() => this.handleBlur(i, project.id)}
 						      				nodeStyles={this.setNodeColor(i)} />
 					      			</li>
 						      	))	
