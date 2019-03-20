@@ -6,8 +6,9 @@ import Button from './_shared/Button';
 import { logMsg, projectNameMaxLength } from '../helpers';
 import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
+import withProjectsContext from '../context/ProjectsConsumer';
 
-class ProjectInput extends Component {
+class Input extends Component {
   static contextType = ProjectContext;
 
   constructor() {
@@ -107,51 +108,45 @@ class ProjectInput extends Component {
   }
 
   render() {
+    const { inputValue } = this.state;
+    const { projectsContext } = this.props;
     return (
-      <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">
+      <section id="project-input">
         {
-          value => {
-            // logMsg('ProjectInput values', value);
-
-            return (
-              <section id="project-input">
-                {
-                  (this.state.error) ?
-                    <p className="error">Cannot add an empty task!</p>
-                    :
-                    ""
-                }
-                <FormControl labelName="Task Name">
-                  <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
-                    ref={this.inputRef}
-                    value={this.state.inputValue.text}
-                    onChange={e => this.textChangeHandler(e)} />
-                </FormControl>
-
-                <FormControl labelName="Task Number/Priority">
-                  <select
-                    value={this.state.inputValue.idx}
-                    onChange={e => this.taskNumChangeHandler(e)}>
-                    <option value={value.projectsData.length}>Last (default)</option>
-                    {
-                      value.projectsData.map((project, i) => (
-                        <option key={i} value={i}>{i + 1}</option>
-                      ))
-                    }
-                  </select>
-                  <span className="caret">
-                    <i className="fas fa-caret-down"></i>
-                  </span>
-                </FormControl>
-
-                <Button clickHandler={this.clickHandler}>+ Add Task</Button>
-              </section>
-            );
-          }
+          (this.state.error) ?
+            <p className="error">Cannot add an empty task!</p>
+            :
+            ""
         }
-      </ProjectContext.Consumer>
+        <FormControl labelName="Task Name">
+          <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
+            ref={this.inputRef}
+            value={inputValue.text}
+            onChange={e => this.textChangeHandler(e)} />
+        </FormControl>
+
+        <FormControl labelName="Task Number/Priority">
+          <select
+            value={inputValue.idx}
+            onChange={e => this.taskNumChangeHandler(e)}>
+            <option value={projectsContext.projectsData.length}>Last (default)</option>
+            {
+              projectsContext.projectsData.map((project, i) => (
+                <option key={i} value={i}>{i + 1}</option>
+              ))
+            }
+          </select>
+          <span className="caret">
+            <i className="fas fa-caret-down"></i>
+          </span>
+        </FormControl>
+
+        <Button clickHandler={this.clickHandler}>+ Add Task</Button>
+      </section>
     );
   }
 }
+
+const ProjectInput = withProjectsContext(Input);
 
 export default ProjectInput;
