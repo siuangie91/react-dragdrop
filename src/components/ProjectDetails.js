@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HomeLink from './_shared/HomeLink';
-import withProjectsContext from './decorators/withProjectsContext';
+import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext
 class ProjectDetails extends Component {

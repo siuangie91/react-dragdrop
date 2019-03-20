@@ -4,7 +4,7 @@ import ProjectNode from './ProjectNode';
 import MaxLengthModal from './MaxLengthModal';
 
 import { logMsg, placeCaretAtEnd, projectNameMaxLength } from '../helpers';
-import withProjectsContext from './decorators/withProjectsContext';
+import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext
 class ProjectsContainer extends Component {

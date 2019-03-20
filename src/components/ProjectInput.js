@@ -4,7 +4,7 @@ import Button from './_shared/Button';
 import { logMsg, projectNameMaxLength } from '../helpers';
 import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
-import withProjectsContext from './decorators/withProjectsContext';
+import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext
 class ProjectInput extends Component {

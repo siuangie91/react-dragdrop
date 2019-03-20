@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProjectContext from '../../context/ProjectContext';
+import ProjectContext from '../context/ProjectContext';
 
 const withProjectsContext = ComposedComponent => {
   class WithProjectsContext extends Component {
