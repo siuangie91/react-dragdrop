@@ -9,6 +9,9 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 **:warning: Known-issue:** 404 page not working in live build, but is fine in dev. This has to do with server (which is on LAMP stack) configuration.
 
 ### To-do:
+**Updates**
+* [ ] Use HOCs in conjunction with Context.
+**Initial Launch**
 * [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
 * [x] Add edit functionality
