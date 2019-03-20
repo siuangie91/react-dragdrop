@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 
-import ProjectContext from '../context/ProjectContext';
 import Button from './_shared/Button';
-
 import { logMsg, projectNameMaxLength } from '../helpers';
 import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
+import withProjectsContext from './decorators/withProjectsContext';
 
+@withProjectsContext
 class ProjectInput extends Component {
-  static contextType = ProjectContext;
 
   constructor() {
     super();
@@ -18,23 +17,22 @@ class ProjectInput extends Component {
     this.state = {
       inputValue: {
         text: "",
-        idx: 0 // "fake" init; overwritten by componentDidMount as cannot access this.context.projectsData from constructor
+        idx: 0 // "fake" init; overwritten by componentDidMount
       },
       error: false
     };
   }
 
   componentDidMount() {
-    // use Object.assign to update `idx` without changing `text`
     const newInputValue = Object.assign(this.state.inputValue, {
-      idx: this.context.projectsData.length
+      idx: this.props.projectsContext.projectsData.length
     });
 
     this.setState({
       inputValue: newInputValue,
       // store a list of all the IDs -- this will NOT change when projects are updated/created; 
       // ensures unique ID for new projects
-      currentIds: this.context.projectsData.map(item => item.id)
+      currentIds: this.props.projectsContext.projectsData.map(item => item.id)
     });
   }
 
@@ -52,7 +50,7 @@ class ProjectInput extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject(
+      this.props.projectsContext.addProject(
       {
         id: this.generateId(),
         name: inputValue.text
@@ -63,7 +61,7 @@ class ProjectInput extends Component {
     this.setState({
       inputValue: {
         text: "",
-        idx: this.context.projectsData.length
+        idx: this.props.projectsContext.projectsData.length
       }
     });
   }
@@ -107,49 +105,41 @@ class ProjectInput extends Component {
   }
 
   render() {
+    const { inputValue } = this.state;
+    const { projectsContext } = this.props;
     return (
-      <ProjectContext.Consumer name="ProjectContextConsumer.ProjectInput">
+      <section id="project-input">
         {
-          value => {
-            // logMsg('ProjectInput values', value);
-
-            return (
-              <section id="project-input">
-                {
-                  (this.state.error) ?
-                    <p className="error">Cannot add an empty task!</p>
-                    :
-                    ""
-                }
-                <FormControl labelName="Task Name">
-                  <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
-                    ref={this.inputRef}
-                    value={this.state.inputValue.text}
-                    onChange={e => this.textChangeHandler(e)} />
-                </FormControl>
-
-                <FormControl labelName="Task Number/Priority">
-                  <select
-                    value={this.state.inputValue.idx}
-                    onChange={e => this.taskNumChangeHandler(e)}>
-                    <option value={value.projectsData.length}>Last (default)</option>
-                    {
-                      value.projectsData.map((project, i) => (
-                        <option key={i} value={i}>{i + 1}</option>
-                      ))
-                    }
-                  </select>
-                  <span className="caret">
-                    <i className="fas fa-caret-down"></i>
-                  </span>
-                </FormControl>
-
-                <Button clickHandler={this.clickHandler}>+ Add Task</Button>
-              </section>
-            );
-          }
+          (this.state.error) ?
+            <p className="error">Cannot add an empty task!</p>
+            :
+            ""
         }
-      </ProjectContext.Consumer>
+        <FormControl labelName="Task Name">
+          <input type="text" placeholder="XYZ Task" maxLength={projectNameMaxLength}
+            ref={this.inputRef}
+            value={inputValue.text}
+            onChange={e => this.textChangeHandler(e)} />
+        </FormControl>
+
+        <FormControl labelName="Task Number/Priority">
+          <select
+            value={inputValue.idx}
+            onChange={e => this.taskNumChangeHandler(e)}>
+            <option value={projectsContext.projectsData.length}>Last (default)</option>
+            {
+              projectsContext.projectsData.map((project, i) => (
+                <option key={i} value={i}>{i + 1}</option>
+              ))
+            }
+          </select>
+          <span className="caret">
+            <i className="fas fa-caret-down"></i>
+          </span>
+        </FormControl>
+
+        <Button clickHandler={this.clickHandler}>+ Add Task</Button>
+      </section>
     );
   }
 }

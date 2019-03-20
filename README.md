@@ -4,13 +4,15 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
-:warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
+**:warning: Note:** `draggable` _is not supported on touch screen-only devices._
 
-**:warning: Known-issue:** 404 page not working in live build, but is fine in dev. This has to do with server (which is on LAMP stack) configuration.
+**:warning: Known-issue:** 404 page not working in demo link, but is fine when running a dev build. This has to do with server (which is on LAMP stack) configuration.
 
 ### To-do:
 **Updates**
-* [ ] Use HOCs in conjunction with Context.
+* [x] Use HOCs in conjunction with Context.
+* [x] Configure decorators.
+
 **Initial Launch**
 * [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
