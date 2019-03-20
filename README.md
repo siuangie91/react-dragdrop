@@ -10,8 +10,8 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 ### To-do:
 **Updates**
-* [x] Use HOCs in conjunction with Context.
-* [x] Configure decorators.
+* [x] Use HOCs in conjunction with Context
+* [x] Configure decorators
 
 **Initial Launch**
 * [x] Unit test
