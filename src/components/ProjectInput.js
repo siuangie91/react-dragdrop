@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 
-import ProjectContext from '../context/ProjectContext';
 import Button from './_shared/Button';
-
 import { logMsg, projectNameMaxLength } from '../helpers';
 import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
-import withProjectsContext from '../context/ProjectsConsumer';
+import withProjectsContext from './decorators/withProjectsContext';
 
-class Input extends Component {
-  static contextType = ProjectContext;
+@withProjectsContext
+class ProjectInput extends Component {
 
   constructor() {
     super();
@@ -19,23 +17,22 @@ class Input extends Component {
     this.state = {
       inputValue: {
         text: "",
-        idx: 0 // "fake" init; overwritten by componentDidMount as cannot access this.context.projectsData from constructor
+        idx: 0 // "fake" init; overwritten by componentDidMount
       },
       error: false
     };
   }
 
   componentDidMount() {
-    // use Object.assign to update `idx` without changing `text`
     const newInputValue = Object.assign(this.state.inputValue, {
-      idx: this.context.projectsData.length
+      idx: this.props.projectsContext.projectsData.length
     });
 
     this.setState({
       inputValue: newInputValue,
       // store a list of all the IDs -- this will NOT change when projects are updated/created; 
       // ensures unique ID for new projects
-      currentIds: this.context.projectsData.map(item => item.id)
+      currentIds: this.props.projectsContext.projectsData.map(item => item.id)
     });
   }
 
@@ -53,7 +50,7 @@ class Input extends Component {
 
     logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
 
-    this.context.addProject(
+      this.props.projectsContext.addProject(
       {
         id: this.generateId(),
         name: inputValue.text
@@ -64,7 +61,7 @@ class Input extends Component {
     this.setState({
       inputValue: {
         text: "",
-        idx: this.context.projectsData.length
+        idx: this.props.projectsContext.projectsData.length
       }
     });
   }
@@ -146,7 +143,5 @@ class Input extends Component {
     );
   }
 }
-
-const ProjectInput = withProjectsContext(Input);
 
 export default ProjectInput;

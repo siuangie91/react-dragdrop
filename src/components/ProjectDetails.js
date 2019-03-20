@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import ProjectContext from '../context/ProjectContext';
 import HomeLink from './_shared/HomeLink';
-import withProjectsContext from '../context/ProjectsConsumer';
+import withProjectsContext from './decorators/withProjectsContext';
 
-class Details extends Component {
-  static contextType = ProjectContext;
-
+@withProjectsContext
+class ProjectDetails extends Component {
   render() {
     const { projectsContext, projectId } = this.props;
     const project = projectsContext.projectsData.find(item => item.id === +projectId);
@@ -39,7 +37,5 @@ class Details extends Component {
     );
   }
 }
-
-const ProjectDetails = withProjectsContext(Details);
 
 export default ProjectDetails;
