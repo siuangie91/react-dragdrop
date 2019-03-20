@@ -10,7 +10,9 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 ### To-do:
 **Updates**
-* [ ] Use HOCs in conjunction with Context.
+* [x] Use HOCs in conjunction with Context.
+* [x] Configure decorators.
+
 **Initial Launch**
 * [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
