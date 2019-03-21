@@ -28,7 +28,7 @@ class ProjectsContainer extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     // figure out when to tell component to update
-    return null;
+    return true;
   }
 
   handleDragStart = (e, idx) => {
