@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
+import ProjectContext from '../context/ProjectContext';
 import ProjectNode from './ProjectNode';
 import MaxLengthModal from './MaxLengthModal';
 
 import { logMsg, placeCaretAtEnd, projectNameMaxLength } from '../helpers';
-import withProjectsContext from '../decorators/withProjectsContext';
 
-@withProjectsContext
 class ProjectsContainer extends Component {
+  static contextType = ProjectContext;
 
   constructor() {
     super();
@@ -28,7 +28,7 @@ class ProjectsContainer extends Component {
   }
 
   handleDragStart = (e, idx) => {
-    this.projectToMove = this.props.projectsContext.projectsData[idx];
+    this.projectToMove = this.context.projectsData[idx];
     logMsg('dragging!', this.projectToMove);
 
     e.dataTransfer.effectAllowed = "move";
@@ -41,7 +41,7 @@ class ProjectsContainer extends Component {
     e.preventDefault();
     e.dataTransfer.dropEffect = "move";
 
-    const draggedOverItem = this.props.projectsContext.projectsData[idx];
+    const draggedOverItem = this.context.projectsData[idx];
     // logMsg('draggedOverItem', draggedOverItem);
 
     // if the item is dragged over itself, ignore
@@ -54,7 +54,7 @@ class ProjectsContainer extends Component {
       }
     }
 
-    const { projectsData, updateProjects } = this.props.projectsContext;
+    const { projectsData, updateProjects } = this.context;
 
     // filter out the currently dragged item
     let projects = projectsData.filter(project => project !== this.projectToMove);
@@ -75,7 +75,7 @@ class ProjectsContainer extends Component {
   }
 
   deleteHandler = id => {
-    this.props.projectsContext.deleteProject(id);
+    this.context.deleteProject(id);
   }
 
   editHandler = idx => {
@@ -116,7 +116,7 @@ class ProjectsContainer extends Component {
   handleBlur = (idx, id) => {
     this.nodeCopyContainer.setAttribute('contenteditable', false);
 
-    const { projectsData, updateProjects } = this.props.projectsContext;
+    const { projectsData, updateProjects } = this.context;
 
     let projToEdit = projectsData.find(item => item.id === id);
     projToEdit.name = this.newName; // update the name
@@ -132,7 +132,7 @@ class ProjectsContainer extends Component {
   }
 
   setNodeColor = idx => {
-    const numNodes = this.props.projectsContext.projectsData.length;
+    const numNodes = this.context.projectsData.length;
 
     const percent = 1 / numNodes;
     const degreeTransparency = percent * idx;
@@ -152,43 +152,51 @@ class ProjectsContainer extends Component {
 
   render() {
     // logMsg('ProjectsContainer this.context', this.context);
-    const { projectsContext } = this.props;
     return (
-      <section id="projects-container">
+      <ProjectContext.Consumer name="ProjectContextConsumer.ProjectsContainer">
         {
-          (projectsContext.projectsData.length === 0) ?
-            <p className="error">You have no tasks!</p>
-            : ""
-        }
-        {
-          this.state.reachedCharLimit ?
-            <MaxLengthModal modalClickHandler={this.dismissModal} />
-            : ""
-        }
-        <ol>
-          {
-            projectsContext.projectsData.map((project, i) => (
-              <li key={i}>
-                <ProjectNode
-                  id={project.id}
-                  name={project.name}
-                  projectRef={elem => this.setProjectNodeRef(elem, i)}
-                  dragStartHandler={e => this.handleDragStart(e, i)}
-                  dragOverHandler={e => this.handleDragOver(e, i)}
-                  dragEndHandler={e => this.handleDragEnd(e)}
-                  editHandler={() => this.editHandler(i)}
-                  deleteHandler={() => this.deleteHandler(project.id)}
-                  keyupHandler={e => this.handleKeyup(e)}
-                  enterKeyHandler={e => this.handleEnterKey(e)}
-                  blurHandler={() => this.handleBlur(i, project.id)}
-                  nodeStyles={this.setNodeColor(i)} />
-              </li>
-            ))
-          }
-        </ol>
-      </section>
-    );
+          value => {
+            // logMsg('ProjectsContainer values', value);
 
+            return (
+              <section id="projects-container">
+                {
+                  (value.projectsData.length === 0) ?
+                    <p className="error">You have no tasks!</p>
+                    : ""
+                }
+                {
+                  this.state.reachedCharLimit ?
+                    <MaxLengthModal modalClickHandler={this.dismissModal} />
+                    : ""
+                }
+                <ol>
+                  {
+                    value.projectsData.map((project, i) => (
+                      <li key={i}>
+                        <ProjectNode
+                          id={project.id}
+                          name={project.name}
+                          projectRef={elem => this.setProjectNodeRef(elem, i)}
+                          dragStartHandler={e => this.handleDragStart(e, i)}
+                          dragOverHandler={e => this.handleDragOver(e, i)}
+                          dragEndHandler={e => this.handleDragEnd(e)}
+                          editHandler={() => this.editHandler(i)}
+                          deleteHandler={() => this.deleteHandler(project.id)}
+                          keyupHandler={e => this.handleKeyup(e)}
+                          enterKeyHandler={e => this.handleEnterKey(e)}
+                          blurHandler={() => this.handleBlur(i, project.id)}
+                          nodeStyles={this.setNodeColor(i)} />
+                      </li>
+                    ))
+                  }
+                </ol>
+              </section>
+            );
+          }
+        }
+      </ProjectContext.Consumer>
+    );
   }
 }
 
