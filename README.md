@@ -4,19 +4,16 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
-:warning: _*Note:_ `draggable` _is not supported on touch screen-only devices._ :warning:
+**:warning: Note:** `draggable` _is not supported on touch screen-only devices._ :warning:
 
 **:warning: Known-issue:** 404 page not working in live build, but is fine in dev. This has to do with server (which is on LAMP stack) configuration.
 
 ### To-do:
 **Updates**
-<<<<<<< HEAD
 * [x] Use HOCs in conjunction with Context
 * [x] Configure decorators
+**Note:** These are done in the `with-HOC-decorators` branch. I found that using the HOC and decorators made the app slower, though this may just be a feeling type of thing. Updates to make the app faster while using HOCs and decorators will be done in that branch.
 
-=======
-* [ ] Use HOCs in conjunction with Context.
->>>>>>> parent of f9c4c52... Merge pull request #4 from siuangie91/hoc-context
 **Initial Launch**
 * [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
