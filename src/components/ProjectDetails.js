@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HomeLink from './_shared/HomeLink';
 import withProjectsContext from '../decorators/withProjectsContext';
 
-@withProjectsContext
+@withProjectsContext // decorator
 class ProjectDetails extends Component {
   render() {
     const { projectsContext, projectId } = this.props;

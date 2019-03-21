@@ -6,7 +6,7 @@ import FormControl from './_shared/FormControl';
 import { getRandomInteger } from '../helpers/index';
 import withProjectsContext from '../decorators/withProjectsContext';
 
-@withProjectsContext
+@withProjectsContext // decorator
 class ProjectInput extends Component {
 
   constructor() {
