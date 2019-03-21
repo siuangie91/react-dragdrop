@@ -10,9 +10,12 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 ### To-do:
 **Updates**
+
+_Note:_ These are done in the `with-HOC-decorators` branch. I found that using the HOC and decorators made the app slower, though this may just be a feeling type of thing. Updates to make the app faster while using HOCs and decorators will be done in that branch.
+
 * [x] Use HOCs in conjunction with Context
 * [x] Configure decorators
-**Note:** These are done in the `with-HOC-decorators` branch. I found that using the HOC and decorators made the app slower, though this may just be a feeling type of thing. Updates to make the app faster while using HOCs and decorators will be done in that branch.
+
 
 **Initial Launch**
 * [x] Unit test
