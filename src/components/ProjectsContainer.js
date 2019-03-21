@@ -8,7 +8,6 @@ import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext // decorator
 class ProjectsContainer extends Component {
-
   constructor() {
     super();
 
@@ -27,12 +26,17 @@ class ProjectsContainer extends Component {
     this.newName = "";
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    // figure out when to tell component to update
+    return null;
+  }
+
   handleDragStart = (e, idx) => {
     this.projectToMove = this.props.projectsContext.projectsData[idx];
-    logMsg('dragging!', this.projectToMove);
+    // logMsg('dragging!', this.projectToMove);
 
     e.dataTransfer.effectAllowed = "move";
-    logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
+    // logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
     e.dataTransfer.setData('text/html', e.target);
   }
 
@@ -47,7 +51,7 @@ class ProjectsContainer extends Component {
     // if the item is dragged over itself, ignore
     if (this.projectToMove === draggedOverItem) {
       if (!this.state.ignoringDragOver) { // only if !ignoringDragOver to prevent firing too many events
-        logMsg('Ignoring! Dragging over the same item!');
+        // logMsg('Ignoring! Dragging over the same item!');
 
         this.setState({ ignoringDragOver: true });
         return;
