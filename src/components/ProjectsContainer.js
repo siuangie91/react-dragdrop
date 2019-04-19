@@ -25,20 +25,22 @@ class ProjectsContainer extends Component {
     this.nodeCopyContainer = {};
     this.newName = "";
   }
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     /* SHOULD update when 
-    1. order is different, and
+    1. order is different
     2. list is updated (task added/deleted)
+    3. MaxLength modal needs to be displayed/hidden
     */
     const currProjectsData = this.props.projectsContext.projectsData;
     const nextProjectsData = nextProps.projectsContext.projectsData;
- 
-    if(!isEqual(currProjectsData, nextProjectsData)) {
+    
+    logMsg('nextState', nextState);
+    logMsg('this.state', this.state);
+    if(!isEqual(currProjectsData, nextProjectsData) || 
+      nextState.reachedCharLimit !== this.state.reachedCharLimit) {
       return true;
     }
-    else {
-      return false;
-    }
+    return false;
   }
 
   /* componentDidUpdate() {
@@ -118,9 +120,14 @@ class ProjectsContainer extends Component {
       nodeCopyContainer.blur();
     }
     else if (nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-      this.setState({ reachedCharLimit: true });
+      logMsg('------------------- here');
+      this.setState({ 
+        reachedCharLimit: true 
+      }, () => {
+        logMsg('set modal', this.state);
+      });
 
-      nodeCopyContainer.blur();
+      // nodeCopyContainer.blur();
     }
     else {
       setNewNameAsInnertext();
@@ -184,7 +191,7 @@ class ProjectsContainer extends Component {
             : ""
         }
         {
-          this.state.reachedCharLimit ?
+          (this.state.reachedCharLimit) ?
             <MaxLengthModal modalClickHandler={this.dismissModal} />
             : ""
         }
