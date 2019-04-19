@@ -13,12 +13,12 @@ class ProjectContextProvider extends Component {
   }
 
   addProject = (newProject, idx) => {
-    const { projectsData } = this.state;
-    const projectsDataLeft = projectsData.slice(0, idx);
-    const projectsDataRight = projectsData.slice(idx);
+    // don't want to mutate state object directly
+    const projectsList = [...this.state.projectsData];
+    projectsList.splice(idx, 0, newProject);
 
     this.setState({
-      projectsData: [...projectsDataLeft, newProject, ...projectsDataRight]
+      projectsData: projectsList
     }, () => {
       logMsg('Data after adding:', this.state.projectsData);
     });

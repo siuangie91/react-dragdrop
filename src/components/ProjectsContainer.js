@@ -34,8 +34,6 @@ class ProjectsContainer extends Component {
     const currProjectsData = this.props.projectsContext.projectsData;
     const nextProjectsData = nextProps.projectsContext.projectsData;
     
-    logMsg('nextState', nextState);
-    logMsg('this.state', this.state);
     if(!isEqual(currProjectsData, nextProjectsData) || 
       nextState.reachedCharLimit !== this.state.reachedCharLimit) {
       return true;
@@ -120,14 +118,11 @@ class ProjectsContainer extends Component {
       nodeCopyContainer.blur();
     }
     else if (nodeCopyContainer.innerText.length >= projectNameMaxLength) {
-      logMsg('------------------- here');
       this.setState({ 
         reachedCharLimit: true 
-      }, () => {
-        logMsg('set modal', this.state);
       });
 
-      // nodeCopyContainer.blur();
+      nodeCopyContainer.blur();
     }
     else {
       setNewNameAsInnertext();
