@@ -52,3 +52,78 @@ export function placeCaretAtEnd(el) {
     textRange.select();
   }
 }
+
+export function isEqual(value, other) {
+  const TYPES = {
+    array: '[object Array]',
+    object: '[object Object]'
+  };
+
+  // get the value type
+  const type = Object.prototype.toString.call(value);
+
+  // if they are primitives, don't bother
+  if ([TYPES.array, TYPES.object].indexOf(type) < 0) {
+    return false
+  };
+  // not equal if they are different types
+  if(type !== Object.prototype.toString.call(other)) {
+    return false;
+  }
+  // compare item size
+  const valueLen = (type === TYPES.array) ? value.length : Object.keys(value).length;
+  const otherLen = (type === TYPES.array) ? other.length : Object.keys(other).length;
+  if(valueLen !== otherLen) {
+    return false;
+  }
+
+  // comparator
+  // Compare two items
+  const compare = function (item1, item2) {
+    // Get the object type
+    const itemType = Object.prototype.toString.call(item1);
+    // If an object or array, compare recursively
+    if (['[object Array]', '[object Object]'].indexOf(itemType) >= 0) {
+      if (!isEqual(item1, item2)) {
+        return false;
+      }
+    }
+    // Otherwise, do a simple comparison
+    else {
+      // If the two items are not the same type, return false
+      if (itemType !== Object.prototype.toString.call(item2)) {
+        return false;
+      }
+      // If it's a function, convert to a string and compare
+      // Otherwise, just compare
+      if (itemType === '[object Function]') {
+        if (item1.toString() !== item2.toString()) {
+          return false;
+        }
+      } else {
+        if (item1 !== item2) {
+          return false;
+        }
+      }
+    }
+  };
+
+  // compare properties
+  if(type === TYPES.array) {
+    for (var i = 0; i < valueLen; i++) {
+			if (compare(value[i], other[i]) === false) {
+        return false;
+      }
+		}
+	} else {
+		for (var key in value) {
+			if (value.hasOwnProperty(key)) {
+				if (compare(value[key], other[key]) === false) {
+          return false;
+        }
+			}
+		}
+	}
+
+  return true;
+}

@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProjectNode from './ProjectNode';
 import MaxLengthModal from './MaxLengthModal';
 
-import { logMsg, placeCaretAtEnd, projectNameMaxLength } from '../helpers';
+import { logMsg, placeCaretAtEnd, projectNameMaxLength, isEqual } from '../helpers';
 import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext // decorator
@@ -27,13 +27,25 @@ class ProjectsContainer extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    // figure out when to tell component to update
-    return true;
+    // SHOULD update when nextProps.projectsContext.projectsData is different (order is not the same)
+    const currProjectsData = this.props.projectsContext.projectsData;
+    const nextProjectsData = nextProps.projectsContext.projectsData;
+ 
+    if(!isEqual(currProjectsData, nextProjectsData)) {
+      return true;
+    }
+    return false;
   }
+
+  /* componentDidUpdate() {
+    logMsg(true, 'ProjectsContainer component did update');
+  } */
 
   handleDragStart = (e, idx) => {
     this.projectToMove = this.props.projectsContext.projectsData[idx];
     // logMsg('dragging!', this.projectToMove);
+
+    this.setState({ isDragging: true });
 
     e.dataTransfer.effectAllowed = "move";
     // logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
@@ -75,7 +87,10 @@ class ProjectsContainer extends Component {
     e.dataTransfer.dropEffect = "move";
 
     this.projectToMove = null;
-    this.setState({ ignoringDragOver: false }); // reset
+    this.setState({ 
+      ignoringDragOver: false,
+      isDragging: false
+    }); // reset
   }
 
   deleteHandler = id => {
