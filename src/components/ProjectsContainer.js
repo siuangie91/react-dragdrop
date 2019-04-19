@@ -25,16 +25,20 @@ class ProjectsContainer extends Component {
     this.nodeCopyContainer = {};
     this.newName = "";
   }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    // SHOULD update when nextProps.projectsContext.projectsData is different (order is not the same)
+  shouldComponentUpdate(nextProps) {
+    /* SHOULD update when 
+    1. order is different, and
+    2. list is updated (task added/deleted)
+    */
     const currProjectsData = this.props.projectsContext.projectsData;
     const nextProjectsData = nextProps.projectsContext.projectsData;
  
     if(!isEqual(currProjectsData, nextProjectsData)) {
       return true;
     }
-    return false;
+    else {
+      return false;
+    }
   }
 
   /* componentDidUpdate() {

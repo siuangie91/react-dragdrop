@@ -36,6 +36,20 @@ class ProjectInput extends Component {
     });
   }
 
+  componentDidUpdate(prevProps) {
+    // received new props, i.e., updated projectsData
+    const { projectsData } = this.props.projectsContext;
+    if(prevProps.projectsContext.projectsData.length !== projectsData.length) {
+      // clear input field
+      this.setState({
+        inputValue: {
+          text: "",
+          idx: projectsData.length
+        }
+      });
+    }
+  }
+
   clickHandler = () => {
     const { inputValue } = this.state;
     // put focus back into input field
@@ -48,22 +62,13 @@ class ProjectInput extends Component {
       return;
     }
 
-    logMsg(`Adding task: ${inputValue.text} at idx: ${inputValue.idx}`);
+    logMsg(`Adding task: ${inputValue.text} at idx ${inputValue.idx} (priority #${inputValue.idx + 1})`);
 
-      this.props.projectsContext.addProject(
-      {
-        id: this.generateId(),
-        name: inputValue.text
-      },
-      inputValue.idx);
-
-    // clear input field
-    this.setState({
-      inputValue: {
-        text: "",
-        idx: this.props.projectsContext.projectsData.length
-      }
-    });
+    this.props.projectsContext.addProject({
+      id: this.generateId(),
+      name: inputValue.text
+    }, inputValue.idx);
+    // addProject will update ProjectInput props --> use componentDidUpdate to clear input field using setState
   }
 
   textChangeHandler = e => {
