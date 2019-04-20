@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ProjectNode from './ProjectNode';
 import MaxLengthModal from './MaxLengthModal';
 
-import { logMsg, placeCaretAtEnd, projectNameMaxLength, isEqual } from '../helpers';
+import { placeCaretAtEnd, projectNameMaxLength, isEqual } from '../helpers';
 import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext // decorator
