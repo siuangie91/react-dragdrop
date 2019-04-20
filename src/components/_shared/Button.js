@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Button = props => (
-  <button onClick={props.clickHandler}>
-    {props.children}
+const Button = ({clickHandler, children}) => (
+  <button onClick={clickHandler}>
+    {children}
   </button>
 );
 

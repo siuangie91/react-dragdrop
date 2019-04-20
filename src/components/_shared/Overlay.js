@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Overlay = props => (
-  <div className="overlay" id={props.idName}>
+const Overlay = ({ idName, children }) => (
+  <div className="overlay" id={idName}>
     <div className="overlay-container">
-      {props.children}
+      {children}
     </div>
   </div>
 );
