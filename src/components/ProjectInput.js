@@ -8,7 +8,6 @@ import withProjectsContext from '../decorators/withProjectsContext';
 
 @withProjectsContext // decorator
 class ProjectInput extends Component {
-
   constructor() {
     super();
 

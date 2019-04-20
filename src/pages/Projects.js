@@ -4,25 +4,18 @@ import ProjectInput from '../components/ProjectInput';
 import MobileOverlay from '../components/MobileOverlay';
 import { isTouchDevice, logMsg } from '../helpers';
 
-class Projects extends Component {
-
-  render() {
-    logMsg('isTouchDevice', isTouchDevice);
-
-    return (
-      <Fragment>
-        {
-          (isTouchDevice) ?
-            <MobileOverlay />
-            : ""
-        }
-        <Fragment>
-          <ProjectInput />
-          <ProjectsContainer />
-        </Fragment>
-      </Fragment>
-    );
-  }
-}
+const Projects = () => (
+  <Fragment>
+    {
+      (isTouchDevice) ?
+        <MobileOverlay />
+        : ""
+    }
+    <Fragment>
+      <ProjectInput />
+      <ProjectsContainer />
+    </Fragment>
+  </Fragment>
+);
 
 export default Projects;
