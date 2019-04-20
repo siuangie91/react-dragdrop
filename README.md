@@ -13,7 +13,6 @@ Exploring `Context`, `@reach/router`, higher order components, and decorators.
 ### To-do:
 **Updates**
 * [x] Fix slowness with `shouldComponentUpdate`
-  * [ ] Unit test `shouldComponentUpdate`
 * [x] Use HOCs in conjunction with Context
 * [x] Configure decorators
 
