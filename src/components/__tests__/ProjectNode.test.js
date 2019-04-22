@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import ProjectNode from '../ProjectNode';
 
 describe('ProjectNode component', () => {
