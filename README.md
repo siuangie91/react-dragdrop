@@ -1,21 +1,20 @@
 # Task/Project Drag-Drop
 
-A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks.
+A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks. 
+
+Exploring `Context`, `@reach/router`, higher order components, and decorators.
 
 **Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
-**:warning: Note:** `draggable` _is not supported on touch screen-only devices._ :warning:
-
-**:warning: Known-issue:** 404 page not working in live build, but is fine in dev. This has to do with server (which is on LAMP stack) configuration.
+:warning:
+**Note:** `draggable` is not supported on touch screen-only devices.
+**Known-issue:** 404 page not working in demo link, but is fine when running a dev build. This has to do with server (which is on LAMP stack) configuration.
 
 ### To-do:
 **Updates**
-
-_Note:_ These are done in the `with-HOC-decorators` branch. I found that using the HOC and decorators made the app slower, though this may just be a feeling type of thing. Updates to make the app faster while using HOCs and decorators will be done in that branch.
-
+* [x] Fix slowness with `shouldComponentUpdate`
 * [x] Use HOCs in conjunction with Context
 * [x] Configure decorators
-
 
 **Initial Launch**
 * [x] Unit test

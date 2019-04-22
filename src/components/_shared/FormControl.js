@@ -1,9 +1,9 @@
 import React from 'react';
 
-const FormControl = props => (
+const FormControl = ({ labelName, children }) => (
   <div className="form-control">
-    <label>{props.labelName}:</label>
-    {props.children}
+    <label>{labelName}:</label>
+    {children}
   </div>
 );
 
