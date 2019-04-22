@@ -1,8 +1,8 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import ProjectsContainer from '../components/ProjectsContainer';
 import ProjectInput from '../components/ProjectInput';
 import MobileOverlay from '../components/MobileOverlay';
-import { isTouchDevice, logMsg } from '../helpers';
+import { isTouchDevice } from '../helpers';
 
 const Projects = () => (
   <Fragment>
