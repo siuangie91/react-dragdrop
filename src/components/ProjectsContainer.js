@@ -176,7 +176,6 @@ class ProjectsContainer extends Component {
   }
 
   render() {
-    // logMsg('ProjectsContainer this.context', this.context);
     const { projectsContext } = this.props;
     return (
       <section id="projects-container">
