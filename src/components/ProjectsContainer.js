@@ -47,12 +47,10 @@ class ProjectsContainer extends Component {
 
   handleDragStart = (e, idx) => {
     this.projectToMove = this.props.projectsContext.projectsData[idx];
-    // logMsg('dragging!', this.projectToMove);
 
     this.setState({ isDragging: true });
 
     e.dataTransfer.effectAllowed = "move";
-    // logMsg('handleDragStart dropEffect', e.dataTransfer.dropEffect);
     e.dataTransfer.setData('text/html', e.target);
   }
 
@@ -62,12 +60,10 @@ class ProjectsContainer extends Component {
     e.dataTransfer.dropEffect = "move";
 
     const draggedOverItem = this.props.projectsContext.projectsData[idx];
-    // logMsg('draggedOverItem', draggedOverItem);
 
     // if the item is dragged over itself, ignore
     if (this.projectToMove === draggedOverItem) {
       if (!this.state.ignoringDragOver) { // only if !ignoringDragOver to prevent firing too many events
-        // logMsg('Ignoring! Dragging over the same item!');
 
         this.setState({ ignoringDragOver: true });
         return;
@@ -109,7 +105,6 @@ class ProjectsContainer extends Component {
   }
 
   handleKeyup = e => {
-    // logMsg('handleKeyup key', e.key);
     const { nodeCopyContainer, setNewNameAsInnertext } = this;
 
     setNewNameAsInnertext();
@@ -126,7 +121,6 @@ class ProjectsContainer extends Component {
     }
     else {
       setNewNameAsInnertext();
-      // logMsg('newName', newName);
     }
   }
 
