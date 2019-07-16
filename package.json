@@ -2,8 +2,13 @@
   "name": "react-dragdrop",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.15.3",
+    "npm": "6.4.1"
+  },
   "dependencies": {
     "@babel/core": "7.1.6",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
     "@reach/router": "^1.2.1",
     "@svgr/webpack": "2.4.1",
     "babel-core": "7.0.0-bridge.0",
@@ -69,7 +74,6 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.4.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1"
   },
