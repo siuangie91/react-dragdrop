@@ -3,7 +3,20 @@ import NodeBtn from './_shared/NodeBtn';
 import { Link } from '@reach/router';
 
 const ProjectNode = props => {
-  const { id, name, projectRef, dragStartHandler, dragOverHandler, dragEndHandler, nodeStyles, editHandler, deleteHandler, keyupHandler, enterKeyHandler, blurHandler } = props;
+  const { 
+    id, 
+    name, 
+    projectRef, 
+    dragStartHandler, 
+    dragOverHandler, 
+    dragEndHandler, 
+    nodeStyles, 
+    editHandler, 
+    deleteHandler, 
+    keyupHandler, 
+    enterKeyHandler, 
+    blurHandler 
+  } = props;
 
   return (
     <div className="project-node"
