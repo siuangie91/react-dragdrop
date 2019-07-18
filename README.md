@@ -4,7 +4,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 Exploring `Context`, `@reach/router`, higher order components, and decorators.
 
-**Demo:** [https://react-dragdrop.herokuapp.com/](https://react-dragdrop.herokuapp.com/)
+**Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
 
 #### :warning: Known-issues :warning: 
 - `draggable` is not supported on touch screen-only devices.
