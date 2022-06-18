@@ -4,7 +4,7 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 Exploring `Context`, `@reach/router`, higher order components, and decorators.
 
-**Demo:** [http://projects.angiesiudevworks.com/reactdragdrop/](http://projects.angiesiudevworks.com/reactdragdrop/)
+**Demo:** https://react-dragdrop.herokuapp.com/
 
 #### :warning: Known-issues :warning: 
 - `draggable` is not supported on touch screen-only devices.
@@ -16,7 +16,6 @@ Exploring `Context`, `@reach/router`, higher order components, and decorators.
 * [x] Configure decorators
 
 **Initial Launch**
-* [x] Unit test
 * [x] Add route `/detail/:id` that shows project details (name, ID, priority number)
 * [x] Add edit functionality
 * [x] Dynamic `ref`s
@@ -43,20 +42,3 @@ Exploring `Context`, `@reach/router`, higher order components, and decorators.
 ## Dev Setup
 1. `git clone` and `npm install`.
 2. `npm start` to start application. `npm run test` to run tests.
-
-## Console Messages
-I kept my console messages in there because I like to keep a record of what my thought process was. However, I have put all these messages behind a cookie that expires after 24 hours so that not everyone can see them (unless you're reading this, of course :wink:). If you'd like to see the messages, run
-```javascript
-document.cookie="dev_console=true;"
-```
-in the console. Then refresh the page. Check the console again to see the messages! (Cookie is not necessary when in dev mode.)
-
-Enhanced console logger is found in `src/helpers/index.js`:
-```javascript
-export function logMsg(...msgs) { // hide all console msgs behind a cookie
-  if(dev_console) {
-    console.log("[DEV CONSOLE MSG]: ", ...msgs);
-  }
-  // do nothing if no cookie!
-}
-```
