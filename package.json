@@ -77,7 +77,6 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.9.1"
   },
-  "homepage": "http://projects.angiesiudevworks.com/reactdragdrop/",
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,ts,tsx}",
