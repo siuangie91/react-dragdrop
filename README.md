@@ -1,5 +1,7 @@
 # Task/Project Drag-Drop
 
+> ### **:bangbang: This project is archived and no longer maintained.**
+
 A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, and deleting tasks.
 
 Exploring `Context`, `@reach/router`, higher order components, and decorators.
