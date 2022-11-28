@@ -4,6 +4,10 @@ A simple, front-end only prototype of a drag-drop UI for adding, reorganizing, a
 
 Exploring `Context`, `@reach/router`, higher order components, and decorators.
 
+## Demo
+
+https://user-images.githubusercontent.com/11896191/204190720-b2709cba-db17-4278-bc49-7a8ea94ee834.mov
+
 ## Dev Setup
 
 1. `git clone` and `npm install`.
